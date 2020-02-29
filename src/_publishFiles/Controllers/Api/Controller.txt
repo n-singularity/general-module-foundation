@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use Nsingularity\GeneralModule\Foundation\Http\Controller\Api\GeneralController;
+
+class Controller extends GeneralController
+{
+
+}

@@ -134,7 +134,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
         $this->em()->persist($this);
         $this->em()->flush();
 
-        $changeLog = new EntityChangeLog();
+        $changeLog = new GeneralEntityChangeLog();
         $changeLog->setUser(user());
         $changeLog->setRefTable($this->getTableName());
         $changeLog->setRefId($this->getId());

@@ -12,7 +12,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Services\HelperService\FileService;
 
-class Controller extends BaseController
+class GeneralController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 

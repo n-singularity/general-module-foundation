@@ -2,38 +2,38 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Repositories;
 
-use App\Http\Responser\AbstractResponse;
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
-use Nsingularity\GeneralModule\Foundation\Entities\User;
+use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
+use Nsingularity\GeneralModule\Foundation\Http\Responser\Api\AbstractResponse;
 use ReflectionException;
 
 
-final class UserRepository extends AbstractRepository
+class GeneralUserRepository extends AbstractRepository
 {
     /**
      * User constructor.
      */
-    public function __construct()
+    public function __construct(GeneralUser $entity, $errorText)
     {
-        parent::__construct(new User(), "User");
+        parent::__construct($entity, $errorText);
     }
-
+    
     /**
      * @param AbstractResponse $responseContract
      * @param array $filter
      * @param array $sort
      * @param string $search
      * @param array $addFunction
-     * @return array|User[]
+     * @return mixed'
      */
-    public function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '', $addFunction = [])
+    public function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '')
     {
         /** @var QueryBuilder $qb */
         $qb = $this->em()->createQueryBuilder();
         $qb->addSelect("adm")
-            ->from(User::class, "adm");
+            ->from(get_class($this->getEntityModel()), "adm");
 
         //filter
         $this->filterEntities($qb, "adm.id", @$filter['id']);
@@ -55,7 +55,7 @@ final class UserRepository extends AbstractRepository
      * @param string $toArray
      * @param $include
      * @param bool $interrupt
-     * @return User
+     * @return GeneralUser
      * @throws CustomMessagesException
      */
     public function showByBasicCriteria(array $criteria = [], $toArray = "default", $include='', $interrupt = true)
@@ -64,36 +64,23 @@ final class UserRepository extends AbstractRepository
     }
 
     /**
+     * @param GeneralUser $entity
      * @param array $data
      * @param string $toArray
-     * @return mixed
+     * @return GeneralUser
      * @throws CustomMessagesException
      * @throws ReflectionException
      */
-    public function store(array $data, $toArray = "default")
-    {
-        $entity = new User();
-        return $this->update($entity, $data, $toArray);
-    }
-
-    /**
-     * @param User $entity
-     * @param array $data
-     * @param string $toArray
-     * @return User
-     * @throws CustomMessagesException
-     * @throws ReflectionException
-     */
-    public function update(User $entity, array $data, $toArray = "default")
+    public function update(GeneralUser $entity, array $data, $toArray = "default")
     {
         return parent::updateEntity($entity, $data, $toArray);
     }
 
     /**
-     * @param User $entity
+     * @param GeneralUser $entity
      * @return array|Translator|null|string
      */
-    public function delete(User $entity)
+    public function delete(GeneralUser $entity)
     {
         return parent::deleteEntity($entity);
     }

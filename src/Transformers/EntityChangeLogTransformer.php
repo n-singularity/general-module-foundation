@@ -4,17 +4,17 @@ namespace Nsingularity\GeneralModule\Foundation\Transformers\V1;
 
 namespace Nsingularity\GeneralModule\Foundation\Transformers;
 
-use Nsingularity\GeneralModule\Foundation\Entities\EntityChangeLog;
+use Nsingularity\GeneralModule\Foundation\Entities\GeneralEntityChangeLog;
 
 trait EntityChangeLogTransformer
 {
     use ParentTransformer;
 
     /**
-     * @param EntityChangeLog $entity
+     * @param GeneralEntityChangeLog $entity
      * @return array
      */
-    public function transformerDefault(EntityChangeLog $entity)
+    public function transformerDefault(GeneralEntityChangeLog $entity)
     {
         return [
             "id"         => $entity->getId(),

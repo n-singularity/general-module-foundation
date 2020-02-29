@@ -3,7 +3,7 @@
 use Doctrine\DBAL\ConnectionException;
 use Illuminate\Support\Str;
 use Nsingularity\GeneralModule\Foundation\Controller\Api\Auth;
-use Nsingularity\GeneralModule\Foundation\Entities\User;
+use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesViewException;
 use Nsingularity\GeneralModule\Foundation\Supports\Helper;
@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 
 if (!function_exists('user')) {
     /**
-     * @return User
+     * @return GeneralUser
      */
     function user()
     {

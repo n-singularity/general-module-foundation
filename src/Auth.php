@@ -2,18 +2,18 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Controller\Api;
 
-use Nsingularity\GeneralModule\Foundation\Entities\User;
+use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
 
 class Auth
 {
-    /** @var  User */
+    /** @var  GeneralUser */
     private $user;
 
     /** @var  boolean */
     private $remember_me;
 
     /**
-     * @return User
+     * @return GeneralUser
      */
     public function getUser()
     {

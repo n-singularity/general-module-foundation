@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Validator;
 use Nsingularity\GeneralModule\Foundation\Controller\Api\Auth;
 use Nsingularity\GeneralModule\Foundation\Entities\AbstractEntities;
-use Nsingularity\GeneralModule\Foundation\Entities\User;
+use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesViewException;
 use Psr\Http\Message\ResponseInterface;
@@ -21,7 +21,7 @@ use voku\helper\AntiXSS;
 class Helper
 {
     /**
-     * @return User
+     * @return GeneralUser
      */
     static function user()
     {

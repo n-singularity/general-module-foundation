@@ -5,7 +5,7 @@ namespace Nsingularity\GeneralModule\Foundation\Http\Middleware\Api;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Nsingularity\GeneralModule\Foundation\Entities\User;
+use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
 use Nsingularity\GeneralModule\Foundation\Services\MainServices\AuthService;
 
 class AuthenticateApiToken
@@ -17,7 +17,7 @@ class AuthenticateApiToken
      */
     public function handle(Request $request, $next)
     {
-        if (user() instanceof User) {
+        if (user() instanceof GeneralUser) {
             /** @var Response $response */
             $response = $next($request);
 

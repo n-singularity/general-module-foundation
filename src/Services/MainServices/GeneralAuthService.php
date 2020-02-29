@@ -2,12 +2,13 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Services\MainServices;
 
+use App\Entities\User;
+use App\Repositories\UserRepository;
 use Exception;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
-use Nsingularity\GeneralModule\Foundation\Repositories\UserRepository;
 use Symfony\Component\HttpFoundation\Cookie;
 
-class AuthService extends AbstractService
+class GeneralAuthService extends AbstractService
 {
     /**
      * @param $username

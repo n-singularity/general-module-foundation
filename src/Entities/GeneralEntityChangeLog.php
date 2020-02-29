@@ -8,13 +8,13 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Transformers\EntityChangeLogTransformer;
 
-class EntityChangeLog extends AbstractEntities
+class GeneralEntityChangeLog extends AbstractEntities
 {
     use EntityChangeLogTransformer;
 
     /**
-     * @var User
-     * @ORM\manyToOne(targetEntity="User")
+     * @var GeneralUser
+     * @ORM\manyToOne(targetEntity="GeneralUser")
      * @ORM\JoinColumn(name="id_user", onDelete="SET NULL", nullable=true)
      */
     protected $user;
@@ -69,17 +69,17 @@ class EntityChangeLog extends AbstractEntities
     }
 
     /**
-     * @return User
+     * @return GeneralUser
      */
-    public function getUser(): User
+    public function getUser(): GeneralUser
     {
         return $this->user;
     }
 
     /**
-     * @param User $user
+     * @param GeneralUser $user
      */
-    public function setUser(User $user): void
+    public function setUser(GeneralUser $user): void
     {
         $this->user = $user;
     }

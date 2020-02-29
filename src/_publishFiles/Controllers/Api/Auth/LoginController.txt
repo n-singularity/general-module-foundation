@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Http\Controllers\Api\Auth;
+
+use Nsingularity\GeneralModule\Foundation\Http\Controller\Api\Auth\GeneralLoginController;
+
+class LoginController extends GeneralLoginController
+{
+
+}

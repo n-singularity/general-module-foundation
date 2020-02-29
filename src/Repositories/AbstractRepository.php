@@ -2,10 +2,10 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Repositories;
 
-use App\Http\Responser\AbstractResponse;
 use Illuminate\Contracts\Translation\Translator;
 use Nsingularity\GeneralModule\Foundation\Entities\AbstractEntities;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
+use Nsingularity\GeneralModule\Foundation\Http\Responser\Api\AbstractResponse;
 use ReflectionException;
 
 abstract class AbstractRepository extends AbstractFunctionRepository
@@ -89,8 +89,19 @@ abstract class AbstractRepository extends AbstractFunctionRepository
 
         return toArrayOrNot($entity, $toArray, $include);
     }
-
-    abstract function store(array $input, $toArray = "default");
+    
+    /**
+     * @param array $data
+     * @param string $toArray
+     * @return mixed
+     * @throws CustomMessagesException
+     * @throws ReflectionException
+     */
+    public function store(array $data, $toArray = "default")
+    {
+        $entity = clone $this->getEntityModel();
+        return $this->updateEntity($entity, $data, $toArray);
+    }
 
     /**
      * @param array $criteria

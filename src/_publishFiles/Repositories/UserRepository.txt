@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Entities\User;
+use Nsingularity\GeneralModule\Foundation\Repositories\GeneralUserRepository;
+
+
+class UserRepository extends GeneralUserRepository
+{
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct(new User(), "User");
+    }
+}
