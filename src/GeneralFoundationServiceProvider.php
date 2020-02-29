@@ -32,13 +32,14 @@ class GeneralFoundationServiceProvider extends ServiceProvider
     {
         if (!$this->isLumen()) {
             $this->publishes([
-              __DIR__ . '/../_publishFiles/config'                           => config_path(''),
-              __DIR__ . '/../_publishFiles/Controllers/Controller.txt'       => app_path('Http/Controllers/Api/Controller.php'),
-              __DIR__ . '/../_publishFiles/Entities/EntityChangeLog.txt'     => app_path('Entities/EntityChangeLog.php'),
-              __DIR__ . '/../_publishFiles/Entities/User.txt'                => app_path('Entities/User.php'),
-              __DIR__ . '/../_publishFiles/Exceptions/Handler.txt'           => app_path('Exceptions/Handler.php'),
-              __DIR__ . '/../_publishFiles/routes/api/foundation.php'        => base_path('routes/api/api.php'),
-              __DIR__ . '/../_publishFiles/Transformers/UserTransformer.txt' => app_path('Transformers/UserTransformer.php'),
+              __DIR__ . '/_publishFiles/config'                           => config_path(''),
+              __DIR__ . '/_publishFiles/Controllers/Controller.txt'       => app_path('Http/Controllers/Api/Controller.php'),
+              __DIR__ . '/_publishFiles/Entities/EntityChangeLog.txt'     => app_path('Entities/EntityChangeLog.php'),
+              __DIR__ . '/_publishFiles/Entities/User.txt'                => app_path('Entities/User.php'),
+              __DIR__ . '/_publishFiles/Auth.txt'                         => app_path('Auth.php'),
+              __DIR__ . '/_publishFiles/Exceptions/Handler.txt'           => app_path('Exceptions/Handler.php'),
+              __DIR__ . '/_publishFiles/routes/api/foundation.php'        => base_path('routes/api/api.php'),
+              __DIR__ . '/_publishFiles/Transformers/UserTransformer.txt' => app_path('Transformers/UserTransformer.php'),
               
             ], 'ns-module-foundation');
         }
