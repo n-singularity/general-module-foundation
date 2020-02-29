@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Entities;
+
+use Doctrine\ORM\Mapping as ORM;
+use  Nsingularity\GeneralModul\Foundation\Entities\User as GeneralUser;
+
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="users")
+ */
+class User extends GeneralUser
+{
+
+}

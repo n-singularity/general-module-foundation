@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Transformers;
+
+use App\Entities\User;
+use Nsingularity\GeneralModul\Foundation\Transformers\ParentTransformer;
+
+trait UserTransformer
+{
+    use ParentTransformer;
+
+    /**
+     * @param User $entity
+     * @return array
+     */
+    public function transformerDefault(User $entity)
+    {
+        return [
+            "hash_id"    => $entity->getHashId(),
+            "email"      => $entity->getEmail(),
+            "created_at" => $entity->formatDateOrNull($entity->getCreatedAt(), "c"),
+            "updated_at" => $entity->formatDateOrNull($entity->getUpdatedAt(), "c"),
+        ];
+    }
+}

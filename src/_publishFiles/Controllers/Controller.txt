@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Http\Controllers\Api;
+
+use Nsingularity\GeneralModul\Foundation\Http\Controller\Api\Controller as NsController;
+
+class Controller extends NsController
+{
+
+}
