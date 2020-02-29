@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Nsingularity\GeneralModul\Foundation\Exceptions;
+namespace Nsingularity\GeneralModule\Foundation\Exceptions;
 
 class CustomMessagesViewException extends \Exception
 {

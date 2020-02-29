@@ -1,6 +1,6 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Entities;
+namespace Nsingularity\GeneralModule\Foundation\Entities;
 
 use Doctrine\ORM\EntityManagerInterface;
 use ReflectionClass;

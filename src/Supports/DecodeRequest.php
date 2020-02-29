@@ -1,6 +1,6 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Supports;
+namespace Nsingularity\GeneralModule\Foundation\Supports;
 
 class DecodeRequest
 {

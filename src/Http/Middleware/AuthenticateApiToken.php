@@ -1,12 +1,12 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Http\Middleware\Api;
+namespace Nsingularity\GeneralModule\Foundation\Http\Middleware\Api;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Nsingularity\GeneralModul\Foundation\Entities\User;
-use Nsingularity\GeneralModul\Foundation\Services\MainServices\AuthService;
+use Nsingularity\GeneralModule\Foundation\Entities\User;
+use Nsingularity\GeneralModule\Foundation\Services\MainServices\AuthService;
 
 class AuthenticateApiToken
 {

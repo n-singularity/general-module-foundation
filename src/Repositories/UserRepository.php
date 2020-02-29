@@ -1,12 +1,12 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Repositories;
+namespace Nsingularity\GeneralModule\Foundation\Repositories;
 
 use App\Http\Responser\AbstractResponse;
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
-use Nsingularity\GeneralModul\Foundation\Entities\User;
-use Nsingularity\GeneralModul\Foundation\Exceptions\CustomMessagesException;
+use Nsingularity\GeneralModule\Foundation\Entities\User;
+use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use ReflectionException;
 
 

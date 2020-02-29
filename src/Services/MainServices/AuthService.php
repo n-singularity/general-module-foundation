@@ -1,10 +1,10 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Services\MainServices;
+namespace Nsingularity\GeneralModule\Foundation\Services\MainServices;
 
 use Exception;
-use Nsingularity\GeneralModul\Foundation\Exceptions\CustomMessagesException;
-use Nsingularity\GeneralModul\Foundation\Repositories\UserRepository;
+use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
+use Nsingularity\GeneralModule\Foundation\Repositories\UserRepository;
 use Symfony\Component\HttpFoundation\Cookie;
 
 class AuthService extends AbstractService

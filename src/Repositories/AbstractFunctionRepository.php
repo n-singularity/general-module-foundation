@@ -1,6 +1,6 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Repositories;
+namespace Nsingularity\GeneralModule\Foundation\Repositories;
 
 use Carbon\Carbon;
 use DateTime;

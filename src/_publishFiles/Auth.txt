@@ -2,7 +2,7 @@
 
 namespace App;
 
-use \Nsingularity\GeneralModul\Foundation\Controller\Api\Auth as BaseAuth;
+use \Nsingularity\GeneralModule\Foundation\Controller\Api\Auth as BaseAuth;
 
 class Auth extends BaseAuth
 {

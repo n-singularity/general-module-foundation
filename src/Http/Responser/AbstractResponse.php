@@ -1,6 +1,6 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Http\Responser\Api;
+namespace Nsingularity\GeneralModule\Foundation\Http\Responser\Api;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;

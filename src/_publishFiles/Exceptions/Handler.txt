@@ -5,7 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
-use Nsingularity\GeneralModul\Foundation\Supports\TelegramBotNotification;
+use Nsingularity\GeneralModule\Foundation\Supports\TelegramBotNotification;
 use Symfony\Component\HttpFoundation\Response;
 
 class Handler extends ExceptionHandler

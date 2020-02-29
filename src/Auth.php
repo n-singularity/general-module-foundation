@@ -1,8 +1,8 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Controller\Api;
+namespace Nsingularity\GeneralModule\Foundation\Controller\Api;
 
-use Nsingularity\GeneralModul\Foundation\Entities\User;
+use Nsingularity\GeneralModule\Foundation\Entities\User;
 
 class Auth
 {

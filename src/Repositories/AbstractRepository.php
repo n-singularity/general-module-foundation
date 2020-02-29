@@ -1,11 +1,11 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Repositories;
+namespace Nsingularity\GeneralModule\Foundation\Repositories;
 
 use App\Http\Responser\AbstractResponse;
 use Illuminate\Contracts\Translation\Translator;
-use Nsingularity\GeneralModul\Foundation\Entities\AbstractEntities;
-use Nsingularity\GeneralModul\Foundation\Exceptions\CustomMessagesException;
+use Nsingularity\GeneralModule\Foundation\Entities\AbstractEntities;
+use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use ReflectionException;
 
 abstract class AbstractRepository extends AbstractFunctionRepository

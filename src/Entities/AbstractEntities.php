@@ -1,8 +1,8 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Entities;
+namespace Nsingularity\GeneralModule\Foundation\Entities;
 
-use Nsingularity\GeneralModul\Foundation\Exceptions\CustomMessagesException;
+use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping AS ORM;
 use ReflectionException;

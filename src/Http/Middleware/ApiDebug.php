@@ -1,6 +1,6 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Http\Middleware\Api;
+namespace Nsingularity\GeneralModule\Foundation\Http\Middleware\Api;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

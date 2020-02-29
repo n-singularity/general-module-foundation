@@ -1,10 +1,10 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Transformers\V1;
+namespace Nsingularity\GeneralModule\Foundation\Transformers\V1;
 
-namespace Nsingularity\GeneralModul\Foundation\Transformers;
+namespace Nsingularity\GeneralModule\Foundation\Transformers;
 
-use Nsingularity\GeneralModul\Foundation\Entities\EntityChangeLog;
+use Nsingularity\GeneralModule\Foundation\Entities\EntityChangeLog;
 
 trait EntityChangeLogTransformer
 {

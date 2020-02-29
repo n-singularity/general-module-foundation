@@ -1,15 +1,16 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Http\Controller\Api;
+namespace Nsingularity\GeneralModule\Foundation\Http\Controller\Api;
 
+use DateTime;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Controller as BaseController;
-use Nsingularity\GeneralModul\Foundation\Exceptions\CustomMessagesException;
-use Nsingularity\GeneralModul\Foundation\Services\HelperService\FileService;
+use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
+use Nsingularity\GeneralModule\Foundation\Services\HelperService\FileService;
 
 class Controller extends BaseController
 {
@@ -43,7 +44,7 @@ class Controller extends BaseController
 
         $uploadService = new FileService();
 
-        $pathDir      = 'images/temporary/' . (new \DateTime())->format("Ymd");
+        $pathDir      = 'images/temporary/' . (new DateTime())->format("Ymd");
         $pathFilename = $pathDir . '/' . time() . "_" . str_random(6);
 
         $width  = $request->input("width");
@@ -79,7 +80,7 @@ class Controller extends BaseController
 
         $uploadService = new FileService();
 
-        $pathDir      = 'images/temporary/' . (new \DateTime())->format("Ymd");
+        $pathDir      = 'images/temporary/' . (new DateTime())->format("Ymd");
         $pathFilename = $pathDir . '/' . time() . "_" . str_random(6);
 
         return $uploadService->uploadImage($pathFilename, $image, 0, 0, 0, 0, 2000, 2000);
@@ -94,7 +95,7 @@ class Controller extends BaseController
     {
         $uploadService = new FileService();
 
-        $pathDir      = 'images/temporary/' . (new \DateTime())->format("Ymd");
+        $pathDir      = 'images/temporary/' . (new DateTime())->format("Ymd");
         $pathFilename = $pathDir . '/' . time() . "_" . str_random(6);
 
         return $uploadService->uploadImage($pathFilename, $file);

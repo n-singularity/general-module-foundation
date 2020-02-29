@@ -1,12 +1,12 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Entities;
+namespace Nsingularity\GeneralModule\Foundation\Entities;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Nsingularity\GeneralModul\Foundation\Exceptions\CustomMessagesException;
-use Nsingularity\GeneralModul\Foundation\Transformers\EntityChangeLogTransformer;
+use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
+use Nsingularity\GeneralModule\Foundation\Transformers\EntityChangeLogTransformer;
 
 class EntityChangeLog extends AbstractEntities
 {

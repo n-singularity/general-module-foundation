@@ -1,8 +1,8 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Transformers;
+namespace Nsingularity\GeneralModule\Foundation\Transformers;
 
-use Nsingularity\GeneralModul\Foundation\Exceptions\CustomMessagesException;
+use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 
 trait ParentTransformer
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Supports;
+namespace Nsingularity\GeneralModule\Foundation\Supports;
 
 use DateTime;
 use Doctrine\DBAL\ConnectionException;
@@ -10,11 +10,11 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Validator;
-use Nsingularity\GeneralModul\Foundation\Controller\Api\Auth;
-use Nsingularity\GeneralModul\Foundation\Entities\AbstractEntities;
-use Nsingularity\GeneralModul\Foundation\Entities\User;
-use Nsingularity\GeneralModul\Foundation\Exceptions\CustomMessagesException;
-use Nsingularity\GeneralModul\Foundation\Exceptions\CustomMessagesViewException;
+use Nsingularity\GeneralModule\Foundation\Controller\Api\Auth;
+use Nsingularity\GeneralModule\Foundation\Entities\AbstractEntities;
+use Nsingularity\GeneralModule\Foundation\Entities\User;
+use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
+use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesViewException;
 use Psr\Http\Message\ResponseInterface;
 use voku\helper\AntiXSS;
 

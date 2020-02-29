@@ -1,6 +1,6 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Services\HelperService;
+namespace Nsingularity\GeneralModule\Foundation\Services\HelperService;
 
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Constraint;

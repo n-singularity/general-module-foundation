@@ -1,5 +1,5 @@
 {
-    "name": "n-singularity/general-modul-foundation",
+    "name": "n-singularity/general-module-foundation",
     "description": "Foundation",
     "license": "MIT",
     "authors": [
@@ -24,11 +24,18 @@
         "barryvdh/laravel-debugbar": "^3.2"
     },
     "autoload": {
-        "psr-4": {
-            "Nsingularity\\GenerralModul\\Foundation\\": "src/"
-        },
         "files": [
             "src/Supports/helpers.php"
-        ]
+        ],
+        "psr-4": {
+            "Nsingularity\\GeneralModule\\Foundation\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nsingularity\\GeneralModule\\Foundation\\GeneralFoundationServiceProvider"
+            ]
+        }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Exceptions;
+namespace Nsingularity\GeneralModule\Foundation\Exceptions;
 
 use Exception;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Nsingularity\GeneralModul\Foundation\Services\MainServices;
+namespace Nsingularity\GeneralModule\Foundation\Services\MainServices;
 
 use App\Auth;
 use App\Support\TelegramBotNotification;

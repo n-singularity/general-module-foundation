@@ -3,7 +3,7 @@
 namespace App\Transformers;
 
 use App\Entities\User;
-use Nsingularity\GeneralModul\Foundation\Transformers\ParentTransformer;
+use Nsingularity\GeneralModule\Foundation\Transformers\ParentTransformer;
 
 trait UserTransformer
 {
