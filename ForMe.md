@@ -6,6 +6,6 @@ git checkout -b 'temp'
 git branch -D master
 git checkout -b master origin/master
 git checkout temp
-git checkout rebase master
+git rebase master
 git checkout master
 git rebase temp
