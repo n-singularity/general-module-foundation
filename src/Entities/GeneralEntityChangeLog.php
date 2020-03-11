@@ -15,7 +15,7 @@ class GeneralEntityChangeLog extends AbstractEntities
     /**
      * @var GeneralUser
      * @ORM\manyToOne(targetEntity="GeneralUser")
-     * @ORM\JoinColumn(name="id_user", onDelete="SET NULL", nullable=true)
+     * @ORM\JoinColumn(name="user_id", onDelete="SET NULL", nullable=true)
      */
     protected $user;
 
@@ -51,7 +51,7 @@ class GeneralEntityChangeLog extends AbstractEntities
     {
         $this->generateHashId(get_class($this));
     }
-    
+
     /**
      * @param $arrayType
      * @param string $include

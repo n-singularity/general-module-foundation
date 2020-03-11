@@ -9,3 +9,4 @@ git checkout temp
 git rebase master
 git checkout master
 git rebase temp
+git push origin master
