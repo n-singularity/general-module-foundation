@@ -2,18 +2,20 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Http\Middleware\Api;
 
+use App\Services\AuthService;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
-use Nsingularity\GeneralModule\Foundation\Services\MainServices\AuthService;
 
 class AuthenticateApiToken
 {
     /**
      * @param Request $request
      * @param $next
-     * @return JsonResponse
+     * @return JsonResponse|Response
+     * @throws Exception
      */
     public function handle(Request $request, $next)
     {
@@ -22,8 +24,12 @@ class AuthenticateApiToken
             $response = $next($request);
 
             if ($response instanceof JsonResponse && is_null($response->headers->get("Authorization"))) {
-                $token = AuthService::generateTokenAuth(user()->getId(), $request->header('User-Agent'), customAuth()->isRememberMe());
-                $response->withHeaders(["Authorization" => $token])->cookie(AuthService::generateCookieAuth($token));
+                $userSession =  customAuth()->getUserSession();
+                $userSession->generateExpiredAt();
+                $userSession->save();
+
+                $token = $userSession->generateToken();
+                $response->withHeaders(["Authorization" => $token]);
             }
 
             return $response;

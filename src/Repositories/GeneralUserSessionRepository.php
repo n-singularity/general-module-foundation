@@ -4,20 +4,19 @@ namespace Nsingularity\GeneralModule\Foundation\Repositories;
 
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
-use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
+use Nsingularity\GeneralModule\Foundation\Entities\GeneralUserSession;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Http\Responser\Api\AbstractResponse;
 use ReflectionException;
 
-
-class GeneralUserRepository extends AbstractRepository
+class GeneralUserSessionRepository extends AbstractRepository
 {
     /**
-     * GeneralUserRepository constructor.
-     * @param GeneralUser $entity
+     * GeneralUserSessionRepository constructor.
+     * @param GeneralUserSession $entity
      * @param $errorText
      */
-    public function __construct(GeneralUser $entity, $errorText)
+    public function __construct(GeneralUserSession $entity, $errorText)
     {
         parent::__construct($entity, $errorText);
     }
@@ -25,15 +24,12 @@ class GeneralUserRepository extends AbstractRepository
     protected function basicFilterSearchSort(QueryBuilder &$qb, $filter = [], $sort = [], $search = '')
     {
         //filter
-        $this->filterEntities($qb, "user.id", @$filter['id']);
+        $this->filterEntities($qb, "user_sess.id", @$filter['id']);
 
-        $this->filterEntities($qb, "user.hash_id", @$filter['hash_id']);
-
-        //search
-        $this->searchEntities($qb, $search, ["user.name", "user.email"]);
+        $this->filterEntities($qb, "user_sess.hash_id", @$filter['hash_id']);
 
         //sort
-        $this->sortEntities($qb, ["name" => "user.name"], @$sort["field"], @$sort["order"], "user.name", "asc");
+        $this->sortEntities($qb, ["name" => "user_sess.created_at"], @$sort["field"], @$sort["order"], "user_sess.created_at", "desc");
     }
 
     /**
@@ -41,14 +37,15 @@ class GeneralUserRepository extends AbstractRepository
      * @param array $filter
      * @param array $sort
      * @param string $search
-     * @return mixed
+     * @param array $addFunction
+     * @return mixed'
      */
     public function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '')
     {
         /** @var QueryBuilder $qb */
         $qb = $this->em()->createQueryBuilder();
-        $qb->addSelect("user")
-            ->from(get_class($this->getEntityModel()), "user");
+        $qb->addSelect("user_sess")
+            ->from(get_class($this->getEntityModel()), "user_sess");
 
         $this->basicFilterSearchSort($qb, $filter, $sort, $search);
 
@@ -61,32 +58,32 @@ class GeneralUserRepository extends AbstractRepository
      * @param string $toArray
      * @param $include
      * @param bool $interrupt
-     * @return GeneralUser
+     * @return GeneralUserSession
      * @throws CustomMessagesException
      */
-    public function showByBasicCriteria(array $criteria = [], $toArray = "default", $include = '', $interrupt = true)
+    public function showByBasicCriteria(array $criteria = [], $toArray = "default", $include='', $interrupt = true)
     {
         return parent::showByBasicCriteriaContract($criteria, $toArray, $include, $interrupt);
     }
 
     /**
-     * @param GeneralUser $entity
+     * @param GeneralUserSession $entity
      * @param array $data
      * @param string $toArray
-     * @return GeneralUser
+     * @return GeneralUserSession
      * @throws CustomMessagesException
      * @throws ReflectionException
      */
-    public function update(GeneralUser $entity, array $data, $toArray = "default")
+    public function update(GeneralUserSession $entity, array $data, $toArray = "default")
     {
         return parent::updateEntity($entity, $data, $toArray);
     }
 
     /**
-     * @param GeneralUser $entity
+     * @param GeneralUserSession $entity
      * @return array|Translator|null|string
      */
-    public function delete(GeneralUser $entity)
+    public function delete(GeneralUserSession $entity)
     {
         return parent::deleteEntity($entity);
     }

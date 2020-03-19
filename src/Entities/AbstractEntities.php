@@ -104,6 +104,8 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
 
     abstract function toArray($arrayType, $include = '');
 
+    abstract function generateTransformer($arrayType, $include);
+
     /**
      * @return EntityManagerInterface
      */

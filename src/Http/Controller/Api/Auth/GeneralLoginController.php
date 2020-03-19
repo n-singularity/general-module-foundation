@@ -2,11 +2,11 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Http\Controller\Api\Auth;
 
+use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Http\Controller\Api\GeneralController;
-use Nsingularity\GeneralModule\Foundation\Services\MainServices\GeneralAuthService;
 
 class GeneralLoginController extends GeneralController
 {
@@ -22,7 +22,7 @@ class GeneralLoginController extends GeneralController
             "password" => "required",
         ]);
 
-        $authService = new GeneralAuthService();
+        $authService = new AuthService();
         $loginData   = $authService->login(
             $request->input("username"),
             $request->input("password"),
@@ -31,8 +31,7 @@ class GeneralLoginController extends GeneralController
         );
 
         return $this->response("success")
-            ->withHeaders(["Authorization" => $loginData["token"]])
-            ->cookie($loginData["cookie"]);
+            ->withHeaders(["Authorization" => $loginData["token"]]);
     }
 
     /**
@@ -40,11 +39,10 @@ class GeneralLoginController extends GeneralController
      */
     public function logout()
     {
-        $authService = new GeneralAuthService();
+        $authService = new AuthService();
         $loginData   = $authService->logout();
 
         return $this->response("success")
-            ->withHeaders(["Authorization" => $loginData["token"]])
-            ->cookie($loginData["cookie"]);
+            ->withHeaders(["Authorization" => $loginData["token"]]);
     }
 }

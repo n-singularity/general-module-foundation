@@ -2,6 +2,7 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Controller\Api;
 
+use App\Entities\UserSession;
 use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
 
 class Auth
@@ -9,8 +10,8 @@ class Auth
     /** @var  GeneralUser */
     private $user;
 
-    /** @var  boolean */
-    private $remember_me;
+    /** @var UserSession */
+    private $user_session;
 
     /**
      * @return GeneralUser
@@ -30,19 +31,19 @@ class Auth
     }
 
     /**
-     * @return bool
+     * @return UserSession
      */
-    public function isRememberMe()
+    public function getUserSession(): UserSession
     {
-        return (bool)$this->remember_me;
+        return $this->user_session;
     }
 
     /**
-     * @param bool $remember_me
+     * @param UserSession $user_session
      */
-    public function setRememberMe(bool $remember_me)
+    public function setUserSession(UserSession $user_session): void
     {
-        $this->remember_me = $remember_me;
+        $this->user_session = $user_session;
         $this->rebinding();
     }
 

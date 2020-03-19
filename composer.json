@@ -20,7 +20,8 @@
         "n-singularity/aes-hashing": "^0.1.4",
         "voku/anti-xss": "^4.1",
         "beberlei/doctrineextensions": "^1.2",
-        "barryvdh/laravel-debugbar": "^3.2"
+        "barryvdh/laravel-debugbar": "^3.2",
+        "ext-json": "*"
     },
     "require-dev": {
     },

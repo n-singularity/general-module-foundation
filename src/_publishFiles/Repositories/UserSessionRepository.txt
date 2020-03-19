@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Entities\UserSession;
+use Nsingularity\GeneralModule\Foundation\Repositories\GeneralUserSessionRepository;
+
+
+class UserSessionRepository extends GeneralUserSessionRepository
+{
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct(new UserSession(), "User Session");
+    }
+}

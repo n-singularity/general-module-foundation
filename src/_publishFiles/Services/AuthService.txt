@@ -1,14 +1,19 @@
 <?php
 
-namespace Nsingularity\GeneralModule\Foundation\Services\MainServices;
+namespace App\Services;
+
 
 use App\Entities\User;
+use App\Entities\UserSession;
 use App\Repositories\UserRepository;
+use App\Repositories\UserSessionRepository;
 use Exception;
+use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
+use Nsingularity\GeneralModule\Foundation\Services\MainServices\AbstractService;
 use Symfony\Component\HttpFoundation\Cookie;
 
-class GeneralAuthService extends AbstractService
+class AuthService extends AbstractService
 {
     /**
      * @param $username
@@ -16,7 +21,7 @@ class GeneralAuthService extends AbstractService
      * @param $agent
      * @param bool $rememberMe
      * @return array
-     * @throws CustomMessagesException
+     * @throws CustomMessagesException|Exception
      */
     public function login($username, $password, $agent, $rememberMe = false)
     {
@@ -33,11 +38,10 @@ class GeneralAuthService extends AbstractService
             customException(trans("username and password not match"), false, 401);
         }
 
-        $token = $this::generateTokenAuth($user->getId(), $agent, $rememberMe);
+        $token = $this::generateTokenAuth($user, $agent, $rememberMe);
 
         return [
-            "token"  => "Bearer " . $token,
-            "cookie" => $this::generateCookieAuth($token)
+            "token" => "Bearer " . $token,
         ];
     }
 
@@ -56,26 +60,27 @@ class GeneralAuthService extends AbstractService
     public function loadUserSession($session, $authCookie)
     {
         try {
-            $session        = str_replace("Bearer ", "", $session);
-            $data           = json_decode(decrypt($session), 1) ? json_decode(decrypt($session), 1) : [];
-            $clientIdCookie = decrypt($authCookie);
+            $session = str_replace("Bearer ", "", $session);
+            $data    = json_decode(decrypt($session), 1) ? json_decode(decrypt($session), 1) : [];
         } catch (Exception $exception) {
             return;
         }
 
         $validator = validator($data, [
-            "id_user"     => "required",
-            "agent"       => "required|in:" . base64_encode(request()->header('User-Agent')),
-            "remember_me" => "boolean",
-            "expired_at"  => "required|integer|min:" . time(),
+            "token_hashId" => "required",
+            "agent"        => "required|in:" . base64_encode(request()->header('User-Agent')),
+            "remember_me"  => "boolean",
+            "expired_at"   => "required|integer|min:" . time(),
         ]);
 
-        if ($validator->fails() || $clientIdCookie != $session) {
+        if ($validator->fails()) {
             return;
         }
 
-        $userRepository = new UserRepository();
-        $user           = $userRepository->show($data["id_user"], [], false);
+        $userSessionRepository = new UserSessionRepository();
+        /** @var UserSession $userSession */
+        $userSession = $userSessionRepository->showByHashId($data['token_hashId'], [], false, '', false);
+        $user        = $userSession->getUser();
 
         if ($user instanceof User) {
             customAuth()->setUser($user);
@@ -84,19 +89,23 @@ class GeneralAuthService extends AbstractService
     }
 
     /**
-     * @param $userId
+     * @param GeneralUser $user
      * @param $agent
      * @param $rememberMe
      * @return string
+     * @throws Exception
      */
-    public static function generateTokenAuth($userId, $agent, $rememberMe)
+    public static function generateTokenAuth(GeneralUser $user, $agent, $rememberMe)
     {
-        return encrypt(json_encode([
-            "id_user"     => $userId,
-            "agent"       => base64_encode($agent),
-            "remember_me" => $rememberMe,
-            "expired_at"  => self::calculationExpiredTIme($rememberMe),
-        ]));
+        $userSession = new UserSession();
+        $userSession->setActive(1);
+        $userSession->setUserId($user->getId());
+        $userSession->setRememberMe($rememberMe);
+        $userSession->generateExpiredAt();
+        $userSession->setUserAgent($agent);
+        $userSession->save();
+
+        return $userSession->generateToken();
     }
 
     public static function generateCookieAuth($authKey, $rememberMe = true)

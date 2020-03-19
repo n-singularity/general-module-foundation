@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Transformers;
+
+use App\Entities\UserSession;
+use Nsingularity\GeneralModule\Foundation\Transformers\ParentTransformer;
+
+trait UserSessionTransformer
+{
+    use ParentTransformer;
+
+    /**
+     * @param UserSession $entity
+     * @return array
+     */
+    public function transformerDefault(UserSession $entity)
+    {
+        return [
+            "hash_id"     => $entity->getHashId(),
+            "user_agent"  => $entity->getUserAgent(),
+            "user_id"     => $entity->getUserId(),
+            "active"      => $entity->isActive(),
+            "remember_me" => $entity->isRememberMe(),
+            "expired_at"  => $entity->formatDateOrNull($entity->getExpiredAt(), "c"),
+            "created_at"  => $entity->formatDateOrNull($entity->getCreatedAt(), "c"),
+            "updated_at"  => $entity->formatDateOrNull($entity->getUpdatedAt(), "c"),
+        ];
+    }
+}
