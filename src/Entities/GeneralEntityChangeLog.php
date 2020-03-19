@@ -14,7 +14,7 @@ class GeneralEntityChangeLog extends AbstractEntities
 
     /**
      * @var GeneralUser
-     * @ORM\manyToOne(targetEntity="GeneralUser")
+     * @ORM\manyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", onDelete="SET NULL", nullable=true)
      */
     protected $user;
