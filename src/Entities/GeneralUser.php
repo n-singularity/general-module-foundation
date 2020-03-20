@@ -5,6 +5,7 @@ namespace Nsingularity\GeneralModule\Foundation\Entities;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Illuminate\Support\Facades\Hash;
 use Nsingularity\AesHashing\AesHashing;
 
 abstract class GeneralUser extends AbstractEntities
@@ -134,6 +135,6 @@ abstract class GeneralUser extends AbstractEntities
      */
     public function validatePassword($password): bool
     {
-        return AesHashing::checkAcrypt($password, $this->password);
+        return Hash::check($password, $this->password);
     }
 }

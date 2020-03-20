@@ -5,6 +5,7 @@ namespace Nsingularity\GeneralModule\Foundation\Http\Controller\Api\Auth;
 use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Http\Controller\Api\GeneralController;
 

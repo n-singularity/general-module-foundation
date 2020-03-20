@@ -55,9 +55,8 @@ class AuthService extends AbstractService
 
     /**
      * @param $session
-     * @param $authCookie
      */
-    public function loadUserSession($session, $authCookie)
+    public function loadUserSession($session)
     {
         try {
             $session = str_replace("Bearer ", "", $session);
@@ -84,7 +83,6 @@ class AuthService extends AbstractService
 
         if ($user instanceof User) {
             customAuth()->setUser($user);
-            customAuth()->setRememberMe($data["remember_me"]);
         }
     }
 

@@ -2,19 +2,16 @@
 
 namespace App\Entities;
 
-use App\Transformers\UserSessionTransformer;
 use Doctrine\ORM\Mapping as ORM;
-use  Nsingularity\GeneralModule\Foundation\Entities\GeneralUserSession;
+use  Nsingularity\GeneralModule\Foundation\Entities\GeneralEntityChangeLog;
 
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="user_sessions")
+ * @ORM\Table(name="entity_change_logs")
  */
-class UserSession extends GeneralUserSession
+class EntityChangeLog extends GeneralEntityChangeLog
 {
-    use UserSessionTransformer;
-
     function getParent()
     {
 

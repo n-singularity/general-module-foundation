@@ -50,6 +50,12 @@ Abstract class GeneralEntityChangeLog extends AbstractEntities
     protected $diff;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $ip;
+
+    /**
      * @var DateTime
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", options={"default":"CURRENT_TIMESTAMP"})
@@ -61,6 +67,15 @@ Abstract class GeneralEntityChangeLog extends AbstractEntities
      */
     public function __construct()
     {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        } else {
+            $ip_address = $_SERVER['REMOTE_ADDR'];
+        }
+
+        $this->ip = $ip_address;
         $this->generateHashId(get_class($this));
     }
 
