@@ -115,7 +115,7 @@ abstract class GeneralUserSession extends AbstractEntities
      */
     public function setUserAgent(string $user_agent): void
     {
-        $this->user_agent = base64_encode($user_agent);
+        $this->user_agent = $user_agent;
     }
 
     /**
@@ -202,7 +202,7 @@ abstract class GeneralUserSession extends AbstractEntities
     {
         return encrypt(json_encode([
             "token_hashId" => $this->getHashId(),
-            "agent"        => $this->user_agent,
+            "agent"        => base64_encode($this->user_agent),
             "remember_me"  => $this->remember_me,
             "expired_at"   => $this->expired_at->getTimestamp(),
         ]));

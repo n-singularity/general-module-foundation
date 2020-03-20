@@ -67,12 +67,15 @@ class GeneralFoundationServiceProvider extends ServiceProvider
             return new DecodeRequest();
         });
 
-        $request    = app(Request::class);
-        $authCookie = $request->cookie("auth");
-        if ($authCookie) {
+        /** @var Request $request */
+        $request = app(Request::class);
+
+        $session = $request->header("Authorization");
+
+        if ($session) {
             $session     = $request->header("Authorization");
             $authService = new AuthService();
-            $authService->loadUserSession($session, $authCookie);
+            $authService->loadUserSession($session);
         }
     }
 
