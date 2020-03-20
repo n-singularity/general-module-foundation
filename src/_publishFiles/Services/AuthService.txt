@@ -11,6 +11,7 @@ use Exception;
 use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Services\MainServices\AbstractService;
+use ReflectionException;
 use Symfony\Component\HttpFoundation\Cookie;
 
 class AuthService extends AbstractService
@@ -45,11 +46,19 @@ class AuthService extends AbstractService
         ];
     }
 
+    /**
+     * @return array
+     * @throws CustomMessagesException
+     * @throws ReflectionException
+     */
     public function logout()
     {
+        $userSession = customAuth()->getUserSession();
+        $userSession->setActive(false);
+        $userSession->save();
+
         return [
-            "token"  => encrypt([rand(0, 100)]),
-            "cookie" => $this::generateCookieAuth(encrypt([rand(0, 100)]))
+            "token" => encrypt([rand(0, 100)]),
         ];
     }
 
@@ -83,6 +92,7 @@ class AuthService extends AbstractService
 
         if ($user instanceof User) {
             customAuth()->setUser($user);
+            customAuth()->setUserSession($userSession);
         }
     }
 
