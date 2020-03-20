@@ -1,5 +1,7 @@
 <?php
 
+use Doctrine\DBAL\Types\JsonType;
+
 return [
 
     /*
@@ -108,7 +110,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'custom_types'               => [
-        'json' => \Doctrine\DBAL\Types\JsonType::class
+        'json' => JsonType::class
     ],
     /*
     |--------------------------------------------------------------------------

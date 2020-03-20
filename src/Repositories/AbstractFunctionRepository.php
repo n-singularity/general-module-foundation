@@ -79,7 +79,7 @@ abstract class AbstractFunctionRepository
             }
         }
     }
-    
+
     /**
      * @param QueryBuilder $qb
      * @param $field
@@ -175,7 +175,7 @@ abstract class AbstractFunctionRepository
                 break;
             case $this::BETWEEN_TYPE_LAST_MONTH:
                 $endDate   = new Carbon();
-                $startDate = (clone $endDate)->subWeeks(1);
+                $startDate = (clone $endDate)->subMonths(1);
                 break;
             case $this::SPECIFIC_DATE:
                 $startDate = $startDate ? new Carbon($startDate->format("Y-m-d 00:00:00")) : new Carbon(date("Y-m-d 00:00:00"));

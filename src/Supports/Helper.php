@@ -445,7 +445,7 @@ class Helper
     {
         return base64_decode(substr($encodeText, 3));
     }
-    
+
     private const DECIMAL_TO_61 = [
       0  => "0",
       1  => "1",
@@ -541,7 +541,7 @@ class Helper
     static function decimal61ToDecimal(string $decimal61)
     {
         $textArray = self::DECIMAL_TO_61;
-    
+
         $value = 0;
 
         $textArray = array_flip($textArray);
@@ -639,7 +639,7 @@ class Helper
         if ($entity != null) {
             if (method_exists($entity, "toArray")) {
                 return $entity->toArray($arrayType, $include);
-            };
+            }
         }
 
         return null;
@@ -795,8 +795,7 @@ class Helper
         });
         $array1  = array_slice($typeArr, 0, $num);
         $array2  = array_slice($typeArr, $num, count($typeArr));
-        $newArr  = array_merge($array2, $array1);
-        return $newArr;
+        return array_merge($array2, $array1);
     }
 
     static function validateDate($date, $format = 'Y-m-d')

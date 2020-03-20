@@ -2,11 +2,12 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Http\Controller\Api\Auth;
 
+use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Http\Controller\Api\GeneralController;
-use Nsingularity\GeneralModule\Foundation\Services\MainServices\AuthService;
+use ReflectionException;
 
 class GeneralLoginGeneralController extends GeneralController
 {
@@ -37,6 +38,8 @@ class GeneralLoginGeneralController extends GeneralController
 
     /**
      * @return JsonResponse
+     * @throws CustomMessagesException
+     * @throws ReflectionException
      */
     public function logout()
     {

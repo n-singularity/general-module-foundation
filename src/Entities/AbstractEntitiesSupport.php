@@ -2,6 +2,7 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Entities;
 
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use ReflectionClass;
 use ReflectionException;
@@ -21,7 +22,7 @@ abstract class AbstractEntitiesSupport
 
             if (method_exists($this, $method)) {
                 $this->$method($value);
-            };
+            }
         }
     }
 
@@ -47,13 +48,13 @@ abstract class AbstractEntitiesSupport
                         $this->$method($value);
                     }
                 }
-            };
+            }
         }
     }
 
     public function formatDateOrNull($dateTime, $format = "Y-m-d H:i:s")
     {
-        /** @var \DateTime $dateTime */
+        /** @var DateTime $dateTime */
         return $dateTime ? $dateTime->format($format) : null;
     }
 

@@ -2,6 +2,7 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Supports;
 
+use Exception;
 use GuzzleHttp\Client;
 
 class TelegramBotNotification
@@ -36,13 +37,13 @@ class TelegramBotNotification
                             "parse_mode" => "markdown",
                         ]
                 ]);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $e->getMessage();
             }
         }
     }
 
-    public function sendException(\Exception $exception)
+    public function sendException(Exception $exception)
     {
         $traceArray    = $exception->getTrace();
         $filteredTrace = [];

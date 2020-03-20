@@ -3,6 +3,7 @@
 namespace Nsingularity\GeneralModule\Foundation\Http\Controller\Api;
 
 use DateTime;
+use Exception;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -89,7 +90,7 @@ class GeneralController extends BaseController
     /**
      * @param UploadedFile $file
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     public function uploadFile(UploadedFile $file)
     {

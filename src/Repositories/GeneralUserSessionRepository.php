@@ -37,7 +37,6 @@ class GeneralUserSessionRepository extends AbstractRepository
      * @param array $filter
      * @param array $sort
      * @param string $search
-     * @param array $addFunction
      * @return mixed'
      */
     public function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '')

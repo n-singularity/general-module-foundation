@@ -3,7 +3,9 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Exceptions;
 
-class CustomMessagesViewException extends \Exception
+use Exception;
+
+class CustomMessagesViewException extends Exception
 {
     private $realException;
 
@@ -18,19 +20,19 @@ class CustomMessagesViewException extends \Exception
      * @param $view
      * @param array $params
      * @param int $statusCode
-     * @param \Exception|null $realException
+     * @param Exception|null $realException
      * @param bool $forceReport
      * @param $messages
-     * @param \Exception|null $previous
+     * @param Exception|null $previous
      * @param int $code
      */
-    public function __construct($view, $params = [], $statusCode = 200, \Exception $realException = null, $forceReport = false, $messages = "", \Exception $previous = null, $code = 0)
+    public function __construct($view, $params = [], $statusCode = 200, Exception $realException = null, $forceReport = false, $messages = "", Exception $previous = null, $code = 0)
     {
         $this->forceReport = $forceReport;
 
         $this->view = view($view, $params);
 
-        if ($realException instanceof \Exception) {
+        if ($realException instanceof Exception) {
             $this->realException = $realException;
         }
 
