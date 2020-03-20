@@ -6,7 +6,6 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Nsingularity\AesHashing\AesHashing;
-use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 
 abstract class GeneralUser extends AbstractEntities
 {

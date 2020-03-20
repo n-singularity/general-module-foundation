@@ -37,6 +37,7 @@ class GeneralFoundationServiceProvider extends ServiceProvider
                 //Entity
                 __DIR__ . '/_publishFiles/Entities/EntityChangeLog.txt'                      => app_path('Entities/EntityChangeLog.php'),
                 __DIR__ . '/_publishFiles/Entities/User.txt'                                 => app_path('Entities/User.php'),
+                __DIR__ . '/_publishFiles/Entities/UserSession.txt'                          => app_path('Entities/UserSession.php'),
                 __DIR__ . '/_publishFiles/Auth.txt'                                          => app_path('Auth.php'),
                 //Controller
                 __DIR__ . '/_publishFiles/Controllers/Api/Controller.txt'                    => app_path('Http/Controllers/Api/Controller.php'),

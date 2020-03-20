@@ -2,7 +2,7 @@
 
 namespace App\Entities;
 
-use App\Transformers\UserTransformer;
+use App\Transformers\UserSessionTransformer;
 use Doctrine\ORM\Mapping as ORM;
 use  Nsingularity\GeneralModule\Foundation\Entities\GeneralUserSession;
 
@@ -13,6 +13,10 @@ use  Nsingularity\GeneralModule\Foundation\Entities\GeneralUserSession;
  */
 class UserSession extends GeneralUserSession
 {
-    use UserTransformer;
+    use UserSessionTransformer;
 
+    function getParent()
+    {
+
+    }
 }

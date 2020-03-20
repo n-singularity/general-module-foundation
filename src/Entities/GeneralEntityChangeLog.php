@@ -2,18 +2,18 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Entities;
 
+use App\Entities\User;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Transformers\EntityChangeLogTransformer;
 
-class GeneralEntityChangeLog extends AbstractEntities
+Abstract class GeneralEntityChangeLog extends AbstractEntities
 {
     use EntityChangeLogTransformer;
 
     /**
-     * @var GeneralUser
+     * @var User
      * @ORM\manyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", onDelete="SET NULL", nullable=true)
      */
@@ -30,6 +30,18 @@ class GeneralEntityChangeLog extends AbstractEntities
      * @ORM\Column(type="string")
      */
     protected $ref_id;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $parent_ref_table;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $parent_ref_id;
 
     /**
      * @var string
@@ -56,7 +68,6 @@ class GeneralEntityChangeLog extends AbstractEntities
      * @param $arrayType
      * @param string $include
      * @return array|mixed
-     * @throws CustomMessagesException
      */
     public function toArray($arrayType, $include = "")
     {
@@ -79,7 +90,7 @@ class GeneralEntityChangeLog extends AbstractEntities
     /**
      * @param GeneralUser $user
      */
-    public function setUser(GeneralUser $user): void
+    public function setUser(?GeneralUser $user): void
     {
         $this->user = $user;
     }
@@ -122,6 +133,33 @@ class GeneralEntityChangeLog extends AbstractEntities
     public function getDiff(): string
     {
         return $this->diff;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParentRefTable(): string
+    {
+        return $this->parent_ref_table;
+    }
+
+    /**
+     * @return string
+     */
+    public function getParentRefId(): string
+    {
+        return $this->parent_ref_id;
+    }
+
+    /**
+     * @param AbstractEntities|null $parent
+     */
+    public function setParent(?AbstractEntities $parent): void
+    {
+        if ($parent instanceof AbstractEntities) {
+            $this->parent_ref_table = $parent->getTableName();
+            $this->parent_ref_id    = $parent->getId();
+        }
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Entities;
 
+use App\Entities\EntityChangeLog;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping AS ORM;
@@ -106,6 +107,8 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
 
     abstract function generateTransformer($arrayType, $include);
 
+    abstract function getParent();
+
     /**
      * @return EntityManagerInterface
      */
@@ -136,10 +139,11 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
         $this->em()->persist($this);
         $this->em()->flush();
 
-        $changeLog = new GeneralEntityChangeLog();
+        $changeLog = new EntityChangeLog();
         $changeLog->setUser(user());
         $changeLog->setRefTable($this->getTableName());
         $changeLog->setRefId($this->getId());
+        $changeLog->setParent($this->getParent());
         $changeLog->setDiff(json_encode($this->getDiffWithOriginal()));
         $this->em()->persist($changeLog);
         $this->em()->flush();

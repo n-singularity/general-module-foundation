@@ -17,11 +17,13 @@ trait EntityChangeLogTransformer
     public function transformerDefault(GeneralEntityChangeLog $entity)
     {
         return [
-            "id"         => $entity->getId(),
-            "ref_table"  => $entity->getRefTable(),
-            "ref_id"     => $entity->getRefId(),
-            "change"     => json_decode($entity->getDiff()),
-            "created_at" => $entity->formatDateOrNull($entity->getCreatedAt(), "c"),
+            "id"               => $entity->getId(),
+            "ref_table"        => $entity->getRefTable(),
+            "ref_id"           => $entity->getRefId(),
+            "parent_ref_table" => $entity->getParentRefTable(),
+            "parent_ref_id"    => $entity->getParentRefId(),
+            "change"           => json_decode($entity->getDiff()),
+            "created_at"       => $entity->formatDateOrNull($entity->getCreatedAt(), "c"),
         ];
     }
 }

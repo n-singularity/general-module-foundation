@@ -15,4 +15,8 @@ class User extends GeneralUser
 {
     use UserTransformer;
 
+    function getParent()
+    {
+
+    }
 }

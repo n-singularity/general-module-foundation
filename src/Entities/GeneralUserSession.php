@@ -3,8 +3,9 @@
 namespace Nsingularity\GeneralModule\Foundation\Entities;
 
 use App\Repositories\UserRepository;
-use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use DateTime;
 use Exception;
 
 abstract class GeneralUserSession extends AbstractEntities
@@ -162,13 +163,13 @@ abstract class GeneralUserSession extends AbstractEntities
      */
     public function generateExpiredAt()
     {
-        $this->expired_at = new DateTime(time() + ($this->remember_me ? 3600 * 1000 : 600));
+        $this->expired_at = (new DateTime())->setTimestamp(time() + ($this->remember_me ? 3600 * 1000 : 600));
     }
 
     /**
      * @return DateTime
      */
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->created_at;
     }
@@ -184,7 +185,7 @@ abstract class GeneralUserSession extends AbstractEntities
     /**
      * @return DateTime
      */
-    public function getUpdatedAt(): DateTime
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updated_at;
     }
