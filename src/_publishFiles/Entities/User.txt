@@ -10,6 +10,7 @@ use  Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User extends GeneralUser
 {

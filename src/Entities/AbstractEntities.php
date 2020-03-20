@@ -189,6 +189,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
 
     public function getDiffWithOriginal()
     {
+//        dd($this->toArray('for_log'), $this->getOriginal());
         return array_diff_assoc($this->toArray('for_log'), $this->getOriginal() ? $this->getOriginal()->toArray('for_log') : []);
     }
 }

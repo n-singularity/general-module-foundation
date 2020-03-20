@@ -10,6 +10,7 @@ use  Nsingularity\GeneralModule\Foundation\Entities\GeneralUserSession;
 /**
  * @ORM\Entity
  * @ORM\Table(name="user_sessions")
+ * @ORM\HasLifecycleCallbacks()
  */
 class UserSession extends GeneralUserSession
 {
