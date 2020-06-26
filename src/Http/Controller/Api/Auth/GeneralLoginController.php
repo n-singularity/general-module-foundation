@@ -7,22 +7,17 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Http\Controller\Api\GeneralController;
+use Nsingularity\GeneralModule\Foundation\Http\Requests\AuthRequests\LoginValidatedRequest;
 use ReflectionException;
 
 class GeneralLoginController extends GeneralController
 {
     /**
-     * @param Request $request
+     * @param LoginValidatedRequest $request
      * @return JsonResponse
-     * @throws CustomMessagesException
      */
-    public function login(Request $request)
+    public function login(LoginValidatedRequest $request)
     {
-        customValidationFromRequest([
-            "username" => "required",
-            "password" => "required",
-        ]);
-
         $authService = new AuthService();
         $loginData   = $authService->login(
             $request->input("username"),
@@ -37,8 +32,6 @@ class GeneralLoginController extends GeneralController
 
     /**
      * @return JsonResponse
-     * @throws CustomMessagesException
-     * @throws ReflectionException
      */
     public function logout()
     {
