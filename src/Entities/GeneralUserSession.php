@@ -7,9 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use DateTime;
 use Exception;
+use Nsingularity\GeneralModule\Foundation\Entities\Traits\TimeStampAttributes;
 
 abstract class GeneralUserSession extends AbstractEntities
 {
+    use TimeStampAttributes;
+
     /**
      * @var integer
      * @ORM\Column(type="integer", nullable=true)
@@ -41,35 +44,11 @@ abstract class GeneralUserSession extends AbstractEntities
     protected $expired_at;
 
     /**
-     * @var DateTime
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime", options={"default":"CURRENT_TIMESTAMP"})
-     */
-    protected $created_at;
-
-    /**
-     * @var DateTime
-     * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="datetime", options={"default":"CURRENT_TIMESTAMP"})
-     */
-    protected $updated_at;
-
-    /**
      * Role constructor.
      */
     public function __construct()
     {
         $this->generateHashId(get_class($this));
-    }
-
-    /**
-     * @param $arrayType
-     * @param string $include
-     * @return mixed
-     */
-    public function toArray($arrayType, $include = "")
-    {
-        return $this->generateTransformer($arrayType, $include);
     }
 
     function rule()
@@ -164,38 +143,6 @@ abstract class GeneralUserSession extends AbstractEntities
     public function generateExpiredAt()
     {
         $this->expired_at = (new DateTime())->setTimestamp(time() + ($this->remember_me ? 3600 * 1000 : 600));
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getCreatedAt(): ?DateTime
-    {
-        return $this->created_at;
-    }
-
-    /**
-     * @param DateTime $created_at
-     */
-    public function setCreatedAt(DateTime $created_at): void
-    {
-        $this->created_at = $created_at;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getUpdatedAt(): ?DateTime
-    {
-        return $this->updated_at;
-    }
-
-    /**
-     * @param DateTime $updated_at
-     */
-    public function setUpdatedAt(DateTime $updated_at): void
-    {
-        $this->updated_at = $updated_at;
     }
 
     public function generateToken()

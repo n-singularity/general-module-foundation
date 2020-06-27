@@ -75,4 +75,14 @@ trait ParentTransformer
             }
         }
     }
+
+    /**
+     * @param $arrayType
+     * @param string $include
+     * @return array|mixed
+     */
+    public function toArray($arrayType, $include = "")
+    {
+        return $this->generateTransformer($arrayType, $include);
+    }
 }

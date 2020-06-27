@@ -18,8 +18,11 @@ abstract class ValidationFormRequest extends Request
             request()->files->all(),
             request()->server->all(),
             request()->content);
+<<<<<<< HEAD
 
         $this->validation();
+=======
+>>>>>>> Custom ValidateFormRequest
     }
 
     abstract protected function rules(): array;

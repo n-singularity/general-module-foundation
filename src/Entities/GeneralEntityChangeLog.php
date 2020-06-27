@@ -6,11 +6,12 @@ use App\Entities\User;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Nsingularity\GeneralModule\Foundation\Entities\Traits\CreatedAtAttribute;
 use Nsingularity\GeneralModule\Foundation\Transformers\EntityChangeLogTransformer;
 
 Abstract class GeneralEntityChangeLog extends AbstractEntities
 {
-    use EntityChangeLogTransformer;
+    use EntityChangeLogTransformer, CreatedAtAttribute;
 
     /**
      * @var User
@@ -56,13 +57,6 @@ Abstract class GeneralEntityChangeLog extends AbstractEntities
     protected $ip;
 
     /**
-     * @var DateTime
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime", options={"default":"CURRENT_TIMESTAMP"})
-     */
-    protected $created_at;
-
-    /**
      * Role constructor.
      */
     public function __construct()
@@ -77,16 +71,6 @@ Abstract class GeneralEntityChangeLog extends AbstractEntities
 
         $this->ip = $ip_address;
         $this->generateHashId(get_class($this));
-    }
-
-    /**
-     * @param $arrayType
-     * @param string $include
-     * @return array|mixed
-     */
-    public function toArray($arrayType, $include = "")
-    {
-        return $this->generateTransformer($arrayType, $include);
     }
 
     function rule()
@@ -183,13 +167,5 @@ Abstract class GeneralEntityChangeLog extends AbstractEntities
     public function setDiff(string $diff): void
     {
         $this->diff = $diff;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->created_at;
     }
 }
