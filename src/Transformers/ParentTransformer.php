@@ -12,7 +12,7 @@ trait ParentTransformer
      * @return array|mixed
      * @throws CustomMessagesException
      */
-    public function generateTransformer($arrayType = "", $include = "")
+    public function generateTransformer($arrayType = "", $include = ""): array
     {
         $function = str_replace("_", " ", $arrayType);
         $function = ucwords($function);
@@ -81,7 +81,7 @@ trait ParentTransformer
      * @param string $include
      * @return array|mixed
      */
-    public function toArray($arrayType, $include = "")
+    public function toArray($arrayType, $include = ""): array
     {
         return $this->generateTransformer($arrayType, $include);
     }

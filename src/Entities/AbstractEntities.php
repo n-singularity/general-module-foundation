@@ -29,7 +29,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
     protected $hash_id;
 
     /** @ORM\PostLoad() */
-    public function doOtherStuffOnPostLoad()
+    public function doOtherStuffOnPostLoad(): void
     {
         $this->original = clone $this;
     }
@@ -39,7 +39,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
      */
     protected $rule;
 
-    public function getTableName()
+    public function getTableName(): string
     {
         return $this->em()->getClassMetadata(get_class($this))->getTableName();
     }
@@ -47,7 +47,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -55,7 +55,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
     /**
      * @return string
      */
-    public function getHashId()
+    public function getHashId(): string
     {
         return $this->hash_id;
     }
@@ -64,7 +64,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
      * @param null $only
      * @return array
      */
-    public function getRule($only = null)
+    public function getRule($only = null): array
     {
         $rule = $this->rule();
 
@@ -79,7 +79,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
      * @param array $except
      * @return array
      */
-    public function getRuleExcept(array $except)
+    public function getRuleExcept(array $except): array
     {
         $rule = $this->rule();
 
@@ -94,20 +94,20 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
      * @param $entityClassName
      * @param int $digit
      */
-    protected function generateHashId($entityClassName, $digit = 8)
+    protected function generateHashId($entityClassName, $digit = 8): string
     {
         if (!$this->hash_id) {
             $this->hash_id = createHashId($entityClassName, $digit);
         }
     }
 
-    abstract function rule();
+    abstract function rule(): array;
 
-    abstract function toArray($arrayType, $include = '');
+    abstract function toArray($arrayType, $include = ''): array;
 
-    abstract function generateTransformer($arrayType, $include);
+    abstract function generateTransformer($arrayType, $include): array;
 
-    abstract function getParent();
+    abstract function getParent(): ?AbstractEntities;
 
     /**
      * @return EntityManagerInterface

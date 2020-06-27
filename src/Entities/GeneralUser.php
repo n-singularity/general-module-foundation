@@ -39,9 +39,9 @@ abstract class GeneralUser extends AbstractEntities
         $this->generateHashId(get_class($this));
     }
 
-    function rule()
+    function rule(): array
     {
-
+        return [];
     }
 
     /**
