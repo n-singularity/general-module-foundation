@@ -35,7 +35,7 @@ trait ParentTransformer
         return $result;
     }
 
-    private function parseInclude($include)
+    private function parseInclude($include): array
     {
         $arrayInclude = [];
 
@@ -53,7 +53,7 @@ trait ParentTransformer
         return $arrayInclude;
     }
 
-    private function parseSubInclude($index, array $subInclude)
+    private function parseSubInclude($index, array $subInclude): array
     {
         if (@$subInclude[$index]) {
             return [$subInclude[$index] => $this->parseSubInclude($index + 1, $subInclude)];

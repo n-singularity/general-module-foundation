@@ -16,7 +16,7 @@ class Auth
     /**
      * @return GeneralUser
      */
-    public function getUser()
+    public function getUser(): GeneralUser
     {
         return $this->user;
     }

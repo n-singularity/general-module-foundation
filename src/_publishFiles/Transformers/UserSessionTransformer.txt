@@ -13,7 +13,7 @@ trait UserSessionTransformer
      * @param UserSession $entity
      * @return array
      */
-    public function transformerDefault(UserSession $entity)
+    public function transformerDefault(UserSession $entity): array
     {
         return [
             "hash_id"     => $entity->getHashId(),

@@ -12,8 +12,8 @@ use  Nsingularity\GeneralModule\Foundation\Entities\GeneralEntityChangeLog;
  */
 class EntityChangeLog extends GeneralEntityChangeLog
 {
-    function getParent()
+    function getParent(): ?AbstractEntities
     {
-
+        return null;
     }
 }

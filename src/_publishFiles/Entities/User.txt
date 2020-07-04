@@ -16,8 +16,8 @@ class User extends GeneralUser
 {
     use UserTransformer;
 
-    function getParent()
+    function getParent(): ?AbstractEntities
     {
-
+        return null;
     }
 }

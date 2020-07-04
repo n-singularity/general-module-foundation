@@ -43,7 +43,7 @@ class TelegramBotNotification
         }
     }
 
-    public function sendException(Exception $exception)
+    public function sendException(Throwable $exception)
     {
         $traceArray    = $exception->getTrace();
         $filteredTrace = [];

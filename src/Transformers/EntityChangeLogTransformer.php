@@ -9,12 +9,12 @@ use Nsingularity\GeneralModule\Foundation\Entities\GeneralEntityChangeLog;
 trait EntityChangeLogTransformer
 {
     use ParentTransformer;
-
+    
     /**
      * @param GeneralEntityChangeLog $entity
      * @return array
      */
-    public function transformerDefault(GeneralEntityChangeLog $entity)
+    public function transformerDefault(GeneralEntityChangeLog $entity): array
     {
         return [
             "id"               => $entity->getId(),

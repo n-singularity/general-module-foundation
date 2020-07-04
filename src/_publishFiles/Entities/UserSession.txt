@@ -16,8 +16,8 @@ class UserSession extends GeneralUserSession
 {
     use UserSessionTransformer;
 
-    function getParent()
+    function getParent(): ?AbstractEntities
     {
-
+        return null;
     }
 }
