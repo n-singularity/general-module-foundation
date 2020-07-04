@@ -10,6 +10,7 @@
     ],
     "require": {
         "php": "^7.1.0",
+        "doctrine/inflector": "1.4.0",
         "guzzlehttp/guzzle": "^6.5",
         "intervention/image": "^2.5",
         "gedmo/doctrine-extensions": "^2.4",
