@@ -136,17 +136,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
 
         customValidation($data, $rule);
 
-        $this->em()->persist($this);
-        $this->em()->flush();
-
-        $changeLog = new EntityChangeLog();
-        $changeLog->setUser(user());
-        $changeLog->setRefTable($this->getTableName());
-        $changeLog->setRefId($this->getId());
-        $changeLog->setParent($this->getParent());
-        $changeLog->setDiff(json_encode($this->getDiffWithOriginal()));
-        $this->em()->persist($changeLog);
-        $this->em()->flush();
+        $this->saveIgnoreRule();
 
         return $this;
     }
@@ -158,6 +148,9 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
     {
         $this->em()->persist($this);
         $this->em()->flush();
+        
+        $this->saveLog($this->getDiffWithOriginal()));
+        
         return $this;
     }
 
@@ -179,6 +172,9 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
     {
         $this->em()->remove($this);
         $this->em()->flush();
+        
+        $this->saveLog($this->getOriginal()->toArray('for_log'));
+        
         return true;
     }
 
@@ -189,7 +185,17 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
 
     public function getDiffWithOriginal()
     {
-//        dd($this->toArray('for_log'), $this->getOriginal());
         return array_diff_assoc($this->toArray('for_log'), $this->getOriginal() ? $this->getOriginal()->toArray('for_log') : []);
+    }
+    
+    private function saveLog($diff){
+        $changeLog = new EntityChangeLog();
+        $changeLog->setUser(user());
+        $changeLog->setRefTable($this->getTableName());
+        $changeLog->setRefId($this->getId());
+        $changeLog->setParent($this->getParent());
+        $changeLog->setDiff(json_encode($diff));
+        $this->em()->persist($changeLog);
+        $this->em()->flush();
     }
 }
