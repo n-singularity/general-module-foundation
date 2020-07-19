@@ -18,6 +18,7 @@ class GeneralLoginController extends GeneralController
      */
     public function login(LoginValidatedRequest $request)
     {
+        \request()
         $authService = new AuthService();
         $loginData   = $authService->login(
             $request->input("username"),

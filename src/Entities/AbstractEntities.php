@@ -148,9 +148,9 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
     {
         $this->em()->persist($this);
         $this->em()->flush();
-        
-        $this->saveLog($this->getDiffWithOriginal()));
-        
+
+        $this->saveLog($this->getDiffWithOriginal());
+
         return $this;
     }
 
@@ -172,9 +172,9 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
     {
         $this->em()->remove($this);
         $this->em()->flush();
-        
+
         $this->saveLog($this->getOriginal()->toArray('for_log'));
-        
+
         return true;
     }
 
@@ -187,7 +187,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
     {
         return array_diff_assoc($this->toArray('for_log'), $this->getOriginal() ? $this->getOriginal()->toArray('for_log') : []);
     }
-    
+
     private function saveLog($diff){
         $changeLog = new EntityChangeLog();
         $changeLog->setUser(user());
