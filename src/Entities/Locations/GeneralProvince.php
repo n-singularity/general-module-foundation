@@ -42,20 +42,9 @@ abstract class GeneralProvince extends AbstractEntities
         $this->generateHashId(get_class($this));
     }
 
-    /**
-     * @param $arrayType
-     * @param string $include
-     * @return array|mixed
-     * @throws CustomMessagesException
-     */
-    public function toArray($arrayType, $include = "")
+    function rule(): array
     {
-        return $this->generateTransformer($arrayType, $include);
-    }
-
-    function rule()
-    {
-
+        return [];
     }
 
     /**

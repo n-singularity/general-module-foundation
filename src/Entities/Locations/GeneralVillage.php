@@ -14,13 +14,6 @@ abstract class GeneralVillage extends AbstractEntities
     use TimeStampAttributes;
 
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="bigint")
-     */
-    protected $id;
-
-    /**
      * @var District
      * @ORM\manyToOne(targetEntity="District", inversedBy="villages", fetch="EAGER")
      * @ORM\JoinColumn(name="district_id", onDelete="SET NULL", nullable=true)
@@ -44,22 +37,6 @@ abstract class GeneralVillage extends AbstractEntities
     function rule(): array
     {
         return [];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
     }
 
     /**
