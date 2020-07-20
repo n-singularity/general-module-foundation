@@ -14,6 +14,13 @@ abstract class GeneralVillage extends AbstractEntities
     use TimeStampAttributes;
 
     /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="bigint")
+     */
+    protected $id;
+
+    /**
      * @var District
      * @ORM\manyToOne(targetEntity="District", inversedBy="villages", fetch="EAGER")
      * @ORM\JoinColumn(name="district_id", onDelete="SET NULL", nullable=true)
