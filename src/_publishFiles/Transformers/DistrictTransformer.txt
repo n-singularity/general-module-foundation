@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Transformers\V1;
+
+use App\Entities\Location\District;
+
+trait DistrictTransformer
+{
+    use ParentTransformer;
+
+    /**
+     * @param District $entity
+     * @return array
+     */
+    public function transformerDefault(District $entity)
+    {
+        return [
+            "id"         => $entity->getId(),
+            "name"       => $entity->getName(),
+            "created_at" => $entity->formatDateOrNull($entity->getCreatedAt(), "c"),
+            "updated_at" => $entity->formatDateOrNull($entity->getUpdatedAt(), "c"),
+        ];
+    }
+
+    public function transformerForLog(District $entity)
+    {
+        $result            = $this->transformerDefault($entity);
+        $result['id_city'] = $entity->getCity()->getId();
+    }
+
+    public function includeCity(District $entity, $subInclude)
+    {
+        return entityToArray($entity->getCity(), 'default', $subInclude);
+    }
+
+    public function includeVillages(District $entity, $subInclude)
+    {
+        return listEntityToListArray($entity->getVillages(), "default", $subInclude);
+    }
+}

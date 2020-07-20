@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Transformers\V1;
+
+use App\Entities\Location\Country;
+
+trait CountryTransformer
+{
+    use ParentTransformer;
+
+    /**
+     * @param Country $entity
+     * @return array
+     */
+    public function transformerDefault(Country $entity)
+    {
+        return [
+            "id"         => $entity->getId(),
+            "name"       => $entity->getName(),
+            "created_at" => $entity->formatDateOrNull($entity->getCreatedAt(), "c"),
+            "updated_at" => $entity->formatDateOrNull($entity->getUpdatedAt(), "c"),
+        ];
+    }
+
+    public function includeProvinces(Country $entity, $subInclude)
+    {
+        return listEntityToListArray($entity->getProvinces(), "default", $subInclude);
+    }
+}
