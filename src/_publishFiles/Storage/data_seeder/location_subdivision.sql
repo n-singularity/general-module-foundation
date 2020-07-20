@@ -1,7 +1,7 @@
 INSERT INTO `countries` (id, name) VALUES
 ("1", "INDONESIA");
 
-INSERT INTO `provinces` (id, country_id, name)  VALUES
+INSERT INTO `provincies` (id, country_id, name)  VALUES
   ("11", "1", "ACEH"),
   ("12", "1", "SUMATERA UTARA"),
   ("13", "1", "SUMATERA BARAT"),
