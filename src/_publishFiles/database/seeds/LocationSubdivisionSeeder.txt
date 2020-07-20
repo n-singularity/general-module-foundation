@@ -12,6 +12,6 @@ class LocationSubdivisionSeeder extends Seeder
      */
     public function run()
     {
-        DB::unprepared(file_get_contents(storage_path('data_seeder/location_subdivision.sql')));
+        DB::unprepared(file_get_contents(base_path('vendor/n-singularity/general-module-foundation/src/storage/data_seeder/location_subdivision.sql')));
     }
 }

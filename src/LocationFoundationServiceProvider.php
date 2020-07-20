@@ -50,7 +50,7 @@ class LocationFoundationServiceProvider extends ServiceProvider
                 __DIR__ . '/_publishFiles/Transformers/Locations/DistrictTransformer.txt' => app_path('Transformers/Locations/DistrictTransformer.php'),
                 __DIR__ . '/_publishFiles/Transformers/Locations/VillageTransformer.txt'  => app_path('Transformers/Locations/VillageTransformer.php'),
                 //seeder
-                __DIR__ . '/_publishFiles/database/seeds/LocationSubdivisionSeeder.php'   => base_path('database/seeds/LocationSubdivisionSeeder.php'),
+                __DIR__ . '/_publishFiles/database/seeds/LocationSubdivisionSeeder.txt'   => base_path('database/seeds/LocationSubdivisionSeeder.php'),
 
 
             ], 'ns-module-location-foundation');
