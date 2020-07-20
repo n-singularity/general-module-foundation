@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class   LocationSubdivisionSeeder extends Seeder
+class LocationSubdivisionSeeder extends Seeder
 {
     /**
      * Seed the application's database.

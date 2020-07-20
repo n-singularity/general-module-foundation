@@ -7,4 +7,5 @@
 
 ### Execute this command
         php artisan vendor:publish --tag=ns-module-foundation --force
+        php artisan vendor:publish --tag=ns-module-location-foundation --force
 

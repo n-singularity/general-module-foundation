@@ -1,12 +1,12 @@
 <?php
 
-namespace Nsingularity\GeneralModule\Foundation\Entities;
+namespace Nsingularity\GeneralModule\Foundation\Entities\Locations;
 
 use App\Exceptions\CustomMessagesException;
-use App\Transformers\V1\VillageTransformer;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Nsingularity\GeneralModule\Foundation\Entities\AbstractEntities;
 use Nsingularity\GeneralModule\Foundation\Entities\Traits\TimeStampAttributes;
 
 abstract class GeneralVillage extends AbstractEntities

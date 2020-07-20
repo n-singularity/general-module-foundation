@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Transformers\V1;
-
-use App\Entities\Location\Village;
+namespace App\Transformers\Locations;
+use App\Entities\Locations\Village;
+use Nsingularity\GeneralModule\Foundation\Transformers\ParentTransformer;
 
 trait VillageTransformer
 {
@@ -25,7 +25,7 @@ trait VillageTransformer
     public function transformerForLog(Village $entity)
     {
         $result            = $this->transformerDefault($entity);
-        $result['id_city'] = $entity->getDistrict()->getId();
+        $result['id_district'] = $entity->getDistrict()->getId();
     }
 
     public function includeDistrict(Village $entity, $subInclude)

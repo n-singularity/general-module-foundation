@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Entities\Locations;
+
+use App\Transformers\Locations\VillageTransformer;
+use Doctrine\ORM\Mapping as ORM;
+use Nsingularity\GeneralModule\Foundation\Entities\Locations\GeneralVillage;
+use Nsingularity\GeneralModule\Foundation\Entities\AbstractEntities;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="villages")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class Village extends GeneralVillage
+{
+    use VillageTransformer;
+
+    function getParent(): ?AbstractEntities
+    {
+        return null;
+    }
+}

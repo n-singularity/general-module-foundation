@@ -1,25 +1,24 @@
 <?php
 
-namespace Nsingularity\GeneralModule\Foundation\Repositories;
+namespace Nsingularity\GeneralModule\Foundation\Repositories\Locations;
 
-use App\Entities\Locations\Country;
+use App\Entities\Location\City;
 use App\Exceptions\CustomMessagesException;
 use App\Http\Responser\AbstractResponse;
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
-use Nsingularity\GeneralModule\Foundation\Entities\GeneralCity;
-use Nsingularity\GeneralModule\Foundation\Entities\GeneralCountry;
+use Nsingularity\GeneralModule\Foundation\Entities\Locations\GeneralCity;
 use ReflectionException;
 
 
-class CountryRepository extends AbstractRepository
+class GeneralCityRepository extends AbstractRepository
 {
     /**
      * GeneralUserRepository constructor.
      * @param GeneralCity $entity
      * @param $errorText
      */
-    public function __construct(GeneralCountry $entity, $errorText)
+    public function __construct(GeneralCity $entity, $errorText)
     {
         parent::__construct($entity, $errorText);
     }
@@ -27,14 +26,15 @@ class CountryRepository extends AbstractRepository
     protected function basicFilterSearchSort(QueryBuilder &$qb, $filter = [], $sort = [], $search = '')
     {
         //filter
-        $this->filterEntities($qb, "country.id", @$filter['id']);
-        $this->filterEntities($qb, "country.hash_id", @$filter['hash_id']);
+        $this->filterEntities($qb, "city.id", @$filter['id']);
+        $this->filterEntities($qb, "city.hash_id", @$filter['hash_id']);
+        $this->filterEntities($qb, "city.province", @$filter['province']);
 
         //search
-        $this->searchEntities($qb, $search, ["country.name"]);
+        $this->searchEntities($qb, $search, ["city.name"]);
 
         //sort
-        $this->sortEntities($qb, ["id" => "country.id"], @$sort["field"], @$sort["order"], "country.id", "asc");
+        $this->sortEntities($qb, ["id" => "city.id"], @$sort["field"], @$sort["order"], "city.id", "asc");
     }
 
     /**
@@ -43,14 +43,14 @@ class CountryRepository extends AbstractRepository
      * @param array $sort
      * @param string $search
      * @param array $addFunction
-     * @return array|Country[]
+     * @return array|City[]
      */
-    public function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '', $addFunction = [])
+    public function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '')
     {
         /** @var QueryBuilder $qb */
         $qb = $this->em()->createQueryBuilder();
-        $qb->addSelect("country")
-            ->from(Country::class, "Country");
+        $qb->addSelect("city")
+            ->from(City::class, "city");
 
         $this->basicFilterSearchSort($qb, $filter, $sort, $search);
 
@@ -63,7 +63,7 @@ class CountryRepository extends AbstractRepository
      * @param string $toArray
      * @param $include
      * @param bool $interrupt
-     * @return Country
+     * @return City
      * @throws CustomMessagesException
      */
     public function showByBasicCriteria(array $criteria = [], $toArray = "default", $include = '', $interrupt = true)
@@ -80,28 +80,28 @@ class CountryRepository extends AbstractRepository
      */
     public function store(array $data, $toArray = "default")
     {
-        $entity = new Country();
+        $entity = new City();
         return $this->update($entity, $data, $toArray);
     }
 
     /**
-     * @param Country $entity
+     * @param City $entity
      * @param array $data
      * @param string $toArray
-     * @return Country
+     * @return City
      * @throws CustomMessagesException
      * @throws ReflectionException
      */
-    public function update(Country $entity, array $data, $toArray = "default")
+    public function update(City $entity, array $data, $toArray = "default")
     {
         return parent::updateEntity($entity, $data, $toArray);
     }
 
     /**
-     * @param Country $entity
+     * @param City $entity
      * @return array|Translator|null|string
      */
-    public function delete(Country $entity)
+    public function delete(City $entity)
     {
         return parent::deleteEntity($entity);
     }

@@ -1,24 +1,24 @@
 <?php
 
-namespace Nsingularity\GeneralModule\Foundation\Repositories;
+namespace Nsingularity\GeneralModule\Foundation\Repositories\Locations;
 
-use App\Entities\Location\City;
+use App\Entities\Location\District;
 use App\Exceptions\CustomMessagesException;
 use App\Http\Responser\AbstractResponse;
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
-use Nsingularity\GeneralModule\Foundation\Entities\GeneralCity;
+use Nsingularity\GeneralModule\Foundation\Entities\Locations\GeneralDistrict;
 use ReflectionException;
 
 
-class CityRepository extends AbstractRepository
+class GeneralDistrictRepository extends AbstractRepository
 {
-    /**
+    /**x
      * GeneralUserRepository constructor.
-     * @param GeneralCity $entity
+     * @param GeneralDistrict $entity
      * @param $errorText
      */
-    public function __construct(GeneralCity $entity, $errorText)
+    public function __construct(GeneralDistrict $entity, $errorText)
     {
         parent::__construct($entity, $errorText);
     }
@@ -26,15 +26,15 @@ class CityRepository extends AbstractRepository
     protected function basicFilterSearchSort(QueryBuilder &$qb, $filter = [], $sort = [], $search = '')
     {
         //filter
-        $this->filterEntities($qb, "city.id", @$filter['id']);
-        $this->filterEntities($qb, "city.hash_id", @$filter['hash_id']);
-        $this->filterEntities($qb, "city.country", @$filter['country']);
+        $this->filterEntities($qb, "district.id", @$filter['id']);
+        $this->filterEntities($qb, "district.hash_id", @$filter['hash_id']);
+        $this->filterEntities($qb, "district.city", @$filter['city']);
 
         //search
-        $this->searchEntities($qb, $search, ["city.name"]);
+        $this->searchEntities($qb, $search, ["district.name"]);
 
         //sort
-        $this->sortEntities($qb, ["id" => "city.id"], @$sort["field"], @$sort["order"], "city.id", "asc");
+        $this->sortEntities($qb, ["id" => "district.id"], @$sort["field"], @$sort["order"], "district.id", "asc");
     }
 
     /**
@@ -43,14 +43,14 @@ class CityRepository extends AbstractRepository
      * @param array $sort
      * @param string $search
      * @param array $addFunction
-     * @return array|City[]
+     * @return array|District[]
      */
     public function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '')
     {
         /** @var QueryBuilder $qb */
         $qb = $this->em()->createQueryBuilder();
-        $qb->addSelect("city")
-            ->from(City::class, "city");
+        $qb->addSelect("district")
+            ->from(District::class, "district");
 
         $this->basicFilterSearchSort($qb, $filter, $sort, $search);
 
@@ -63,7 +63,7 @@ class CityRepository extends AbstractRepository
      * @param string $toArray
      * @param $include
      * @param bool $interrupt
-     * @return City
+     * @return District
      * @throws CustomMessagesException
      */
     public function showByBasicCriteria(array $criteria = [], $toArray = "default", $include = '', $interrupt = true)
@@ -80,28 +80,28 @@ class CityRepository extends AbstractRepository
      */
     public function store(array $data, $toArray = "default")
     {
-        $entity = new City();
+        $entity = new District();
         return $this->update($entity, $data, $toArray);
     }
 
     /**
-     * @param City $entity
+     * @param District $entity
      * @param array $data
      * @param string $toArray
-     * @return City
+     * @return District
      * @throws CustomMessagesException
      * @throws ReflectionException
      */
-    public function update(City $entity, array $data, $toArray = "default")
+    public function update(District $entity, array $data, $toArray = "default")
     {
         return parent::updateEntity($entity, $data, $toArray);
     }
 
     /**
-     * @param City $entity
+     * @param District $entity
      * @return array|Translator|null|string
      */
-    public function delete(City $entity)
+    public function delete(District $entity)
     {
         return parent::deleteEntity($entity);
     }

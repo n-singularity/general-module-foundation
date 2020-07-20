@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Transformers\Locations;
+use App\Entities\Locations\Province;
+use Nsingularity\GeneralModule\Foundation\Transformers\ParentTransformer;
+
+trait ProvinceTransformer
+{
+    use ParentTransformer;
+
+    /**
+     * @param Province $entity
+     * @return array
+     */
+    public function transformerDefault(Province $entity)
+    {
+        return [
+            "hash_id"    => $entity->getHashId(),
+            "name"       => $entity->getName(),
+            "created_at" => $entity->formatDateOrNull($entity->getCreatedAt(), "c"),
+            "updated_at" => $entity->formatDateOrNull($entity->getUpdatedAt(), "c"),
+        ];
+    }
+
+    public function includeCountry(Province $entity, $subInclude)
+    {
+        return entityToArray($entity->getCountry(), "default", $subInclude);
+    }
+
+    public function includeRegencies(Province $entity, $subInclude)
+    {
+        return listEntityToListArray($entity->getRegencies(), "default", $subInclude);
+    }
+}

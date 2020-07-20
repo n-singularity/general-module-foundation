@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Entities\Locations;
+
+use App\Transformers\Locations\DistrictTransformer;
+use Doctrine\ORM\Mapping as ORM;
+use Nsingularity\GeneralModule\Foundation\Entities\Locations\GeneralDistrict;
+use Nsingularity\GeneralModule\Foundation\Entities\AbstractEntities;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="districts")
+ * @ORM\HasLifecycleCallbacks()
+ */
+class District extends GeneralDistrict
+{
+    use DistrictTransformer;
+
+    function getParent(): ?AbstractEntities
+    {
+        return null;
+    }
+}

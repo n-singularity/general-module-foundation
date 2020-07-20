@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Repositories\Locations;
+
+use App\Entities\Locations\Province;
+use Nsingularity\GeneralModule\Foundation\Repositories\Locations\GeneralProvinceRepository;
+
+
+class ProvinceRepository extends GeneralProvinceRepository
+{
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct(new Province(), "Province");
+    }
+}

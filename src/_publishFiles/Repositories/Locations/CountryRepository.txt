@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Repositories\Locations;
+
+use App\Entities\Locations\Country;
+use Nsingularity\GeneralModule\Foundation\Repositories\Locations\GeneralCountryRepository;
+
+
+class CountryRepository extends GeneralCountryRepository
+{
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct(new Country(), "Country");
+    }
+}

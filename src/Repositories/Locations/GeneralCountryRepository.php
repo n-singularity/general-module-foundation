@@ -1,24 +1,24 @@
 <?php
 
-namespace Nsingularity\GeneralModule\Foundation\Repositories;
+namespace Nsingularity\GeneralModule\Foundation\Repositories\Locations;
 
-use App\Entities\Location\Village;
+use App\Entities\Locations\Country;
 use App\Exceptions\CustomMessagesException;
 use App\Http\Responser\AbstractResponse;
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
-use Nsingularity\GeneralModule\Foundation\Entities\GeneralVillage;
+use Nsingularity\GeneralModule\Foundation\Entities\Locations\GeneralCountry;
 use ReflectionException;
 
 
-class VillageRepository extends AbstractRepository
+class GeneralCountryRepository extends AbstractRepository
 {
-    /**x
+    /**
      * GeneralUserRepository constructor.
-     * @param GeneralVillage $entity
+     * @param GeneralCity $entity
      * @param $errorText
      */
-    public function __construct(GeneralVillage $entity, $errorText)
+    public function __construct(GeneralCountry $entity, $errorText)
     {
         parent::__construct($entity, $errorText);
     }
@@ -26,15 +26,14 @@ class VillageRepository extends AbstractRepository
     protected function basicFilterSearchSort(QueryBuilder &$qb, $filter = [], $sort = [], $search = '')
     {
         //filter
-        $this->filterEntities($qb, "vilage.id", @$filter['id']);
-        $this->filterEntities($qb, "vilage.hash_id", @$filter['hash_id']);
-        $this->filterEntities($qb, "vilage.district", @$filter['district']);
+        $this->filterEntities($qb, "country.id", @$filter['id']);
+        $this->filterEntities($qb, "country.hash_id", @$filter['hash_id']);
 
         //search
-        $this->searchEntities($qb, $search, ["vilage.name"]);
+        $this->searchEntities($qb, $search, ["country.name"]);
 
         //sort
-        $this->sortEntities($qb, ["id" => "vilage.id"], @$sort["field"], @$sort["order"], "vilage.id", "asc");
+        $this->sortEntities($qb, ["id" => "country.id"], @$sort["field"], @$sort["order"], "country.id", "asc");
     }
 
     /**
@@ -43,14 +42,14 @@ class VillageRepository extends AbstractRepository
      * @param array $sort
      * @param string $search
      * @param array $addFunction
-     * @return array|Village[]
+     * @return array|Country[]
      */
-    public function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '')
+    public function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '', $addFunction = [])
     {
         /** @var QueryBuilder $qb */
         $qb = $this->em()->createQueryBuilder();
-        $qb->addSelect("vilage")
-            ->from(Village::class, "vilage");
+        $qb->addSelect("country")
+            ->from(Country::class, "Country");
 
         $this->basicFilterSearchSort($qb, $filter, $sort, $search);
 
@@ -63,7 +62,7 @@ class VillageRepository extends AbstractRepository
      * @param string $toArray
      * @param $include
      * @param bool $interrupt
-     * @return Village
+     * @return Country
      * @throws CustomMessagesException
      */
     public function showByBasicCriteria(array $criteria = [], $toArray = "default", $include = '', $interrupt = true)
@@ -80,28 +79,28 @@ class VillageRepository extends AbstractRepository
      */
     public function store(array $data, $toArray = "default")
     {
-        $entity = new Village();
+        $entity = new Country();
         return $this->update($entity, $data, $toArray);
     }
 
     /**
-     * @param Village $entity
+     * @param Country $entity
      * @param array $data
      * @param string $toArray
-     * @return Village
+     * @return Country
      * @throws CustomMessagesException
      * @throws ReflectionException
      */
-    public function update(Village $entity, array $data, $toArray = "default")
+    public function update(Country $entity, array $data, $toArray = "default")
     {
         return parent::updateEntity($entity, $data, $toArray);
     }
 
     /**
-     * @param Village $entity
+     * @param Country $entity
      * @return array|Translator|null|string
      */
-    public function delete(Village $entity)
+    public function delete(Country $entity)
     {
         return parent::deleteEntity($entity);
     }

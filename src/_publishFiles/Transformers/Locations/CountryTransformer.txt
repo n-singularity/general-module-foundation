@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Transformers\V1;
-
-use App\Entities\Location\Country;
+namespace App\Transformers\Locations;
+use App\Entities\Locations\Country;
+use Nsingularity\GeneralModule\Foundation\Transformers\ParentTransformer;
 
 trait CountryTransformer
 {

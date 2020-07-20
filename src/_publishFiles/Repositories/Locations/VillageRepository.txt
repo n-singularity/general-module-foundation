@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Repositories\Locations;
+
+use App\Entities\Locations\Village;
+use Nsingularity\GeneralModule\Foundation\Repositories\Locations\GeneralVillageRepository;
+
+
+class VillageRepository extends GeneralVillageRepository
+{
+    /**
+     * User constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct(new Village(), "Village");
+    }
+}
