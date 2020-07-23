@@ -51,7 +51,7 @@ abstract class GeneralUserSession extends AbstractEntities
         $this->generateHashId(get_class($this));
     }
 
-    function rule(): array
+    public function rule(): array
     {
         return [];
     }

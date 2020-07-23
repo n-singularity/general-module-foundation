@@ -30,9 +30,9 @@ class AuthService extends AbstractService
 
         $userRepository = new UserRepository();
         if ($isEmail) {
-            $user = $userRepository->showByBasicCriteria(["email" => $username], false, "", false);
+            $user = $userRepository->showByBasicFilter(["email" => $username], false, "", false);
         } else {
-            $user = $userRepository->showByBasicCriteria(["username" => $username], false, "", false);
+            $user = $userRepository->showByBasicFilter(["username" => $username], false, "", false);
         }
 
         if (is_null($user) || !$user->validatePassword($password)) {

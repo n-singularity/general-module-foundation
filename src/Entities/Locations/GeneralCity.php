@@ -8,7 +8,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Nsingularity\GeneralModule\Foundation\Entities\AbstractEntities;
+use Nsingularity\GeneralModule\Foundation\Entities\Interfaces\Repositoryable;
 use Nsingularity\GeneralModule\Foundation\Entities\Traits\TimeStampAttributes;
+use Nsingularity\GeneralModule\Foundation\Repositories\AbstractRepository;
+use Nsingularity\GeneralModule\Foundation\Repositories\Locations\GeneralCityRepository;
 
 abstract class GeneralCity extends AbstractEntities
 {
@@ -55,7 +58,7 @@ abstract class GeneralCity extends AbstractEntities
         $this->generateHashId(get_class($this));
     }
 
-    function rule(): array
+    public function rule(): array
     {
         return [];
     }

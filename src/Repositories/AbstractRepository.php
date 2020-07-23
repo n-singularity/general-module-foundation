@@ -5,6 +5,7 @@ namespace Nsingularity\GeneralModule\Foundation\Repositories;
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
 use Nsingularity\GeneralModule\Foundation\Entities\AbstractEntities;
+use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Http\Responser\Api\AbstractResponse;
 use ReflectionException;
@@ -27,9 +28,9 @@ abstract class AbstractRepository extends AbstractFunctionRepository
         $this->errorText       = $errorText;
     }
 
-    abstract function get(AbstractResponse $responseContract, $criteria = [], $sort = [], $search = '');
+    abstract function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '');
 
-    abstract protected function basicFilterSearchSort(QueryBuilder &$qb, $criteria = [], $sort = [], $search = '');
+    abstract protected function basicFilterSearchSort(QueryBuilder &$qb, $filter = [], $sort = [], $search = '');
 
     /**
      * @return AbstractEntities|string
@@ -46,45 +47,43 @@ abstract class AbstractRepository extends AbstractFunctionRepository
 
     /**
      * @param $id
-     * @param array $criteria
+     * @param array $filter
      * @param bool $toArray
      * @param string $include
      * @param bool $interrupt
      * @return mixed
      */
-    public function show($id, $criteria = [], $toArray = true, $include = '', $interrupt = true)
+    public function show($id, $filter = [], $toArray = true, $include = '', $interrupt = true)
     {
-        $criteria["id"] = $id;
-
-        return $this->showByBasicCriteria($criteria, $toArray, $include, $interrupt);
+        $filter["id"] = $id;
+        return $this->showByBasicFilter($filter, $toArray, $include, $interrupt);
     }
 
     /**
      * @param $hashId
-     * @param array $criteria
+     * @param array $filter
      * @param bool $toArray
      * @param string $include
      * @param bool $interrupt
-     * @return AbstractEntities|null
+     * @return mixed
      */
-    public function showByHashId($hashId, $criteria = [], $toArray = true, $include = "", $interrupt = true)
+    public function showByHashId($hashId, $filter = [], $toArray = true, $include = "", $interrupt = true)
     {
-        $criteria["hash_id"] = $hashId;
-
-        return $this->showByBasicCriteria($criteria, $toArray, $include, $interrupt);
+        $filter["hash_id"] = $hashId;
+        return $this->showByBasicFilter($filter, $toArray, $include, $interrupt);
     }
 
     /**
-     * @param $criteria
+     * @param $filter
      * @param $toArray
      * @param $include
      * @param $interrupt
      * @return mixed
      * @throws CustomMessagesException
      */
-    public function showByBasicCriteriaContract($criteria, $toArray, $include, $interrupt)
+    public function showByBasicFilterContract($filter, $toArray, $include, $interrupt)
     {
-        $entity = $this->em()->getRepository($this->entityClassName)->findOneBy($criteria);
+        $entity = $this->em()->getRepository($this->entityClassName)->findOneBy($filter);
 
         if (!$entity && $interrupt) {
             customException(trans($this->errorText . " not found"), false, 404);
@@ -107,23 +106,22 @@ abstract class AbstractRepository extends AbstractFunctionRepository
     }
 
     /**
-     * @param array $criteria
+     * @param array $filter
      * @param $toArray
      * @param $include
      * @param $interrupt
      * @return mixed
      */
-    abstract function showByBasicCriteria(array $criteria, $toArray, $include, $interrupt);
+    abstract function showByBasicFilter(array $filter, $toArray, $include, $interrupt);
 
 
     /**
      * @param AbstractEntities $entity
      * @param array $data
      * @param string $toArray
-     * @param $include
+     * @param string $include
      * @return mixed
      * @throws CustomMessagesException
-     * @throws ReflectionException
      */
     protected function updateEntity(AbstractEntities $entity, array $data, $toArray = "default", $include = "")
     {

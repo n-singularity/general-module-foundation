@@ -8,6 +8,7 @@ use App\Http\Responser\AbstractResponse;
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
 use Nsingularity\GeneralModule\Foundation\Entities\Locations\GeneralCountry;
+use Nsingularity\GeneralModule\Foundation\Repositories\AbstractRepository;
 use ReflectionException;
 
 
@@ -58,16 +59,16 @@ class GeneralCountryRepository extends AbstractRepository
     }
 
     /**
-     * @param array $criteria
+     * @param array $filter
      * @param string $toArray
      * @param $include
      * @param bool $interrupt
      * @return Country
      * @throws CustomMessagesException
      */
-    public function showByBasicCriteria(array $criteria = [], $toArray = "default", $include = '', $interrupt = true)
+    public function showByBasicFilter(array $filter = [], $toArray = "default", $include = '', $interrupt = true)
     {
-        return parent::showByBasicCriteriaContract($criteria, $toArray, $include, $interrupt);
+        return parent::showByBasicFilterContract($filter, $toArray, $include, $interrupt);
     }
 
     /**

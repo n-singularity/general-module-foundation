@@ -61,12 +61,12 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
     }
 
     /**
-     * @param null $only
+     * @param array|null $only
      * @return array
      */
-    public function getRule($only = null): array
+    static public function getRule(array $only = null): array
     {
-        $rule = $this->rule();
+        $rule = static::rule();
 
         if ($only && is_array($only)) {
             $rule = array_intersect_key($rule, array_flip($only));
@@ -79,9 +79,9 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
      * @param array $except
      * @return array
      */
-    public function getRuleExcept(array $except): array
+    static public function getRuleExcept(array $except): array
     {
-        $rule = $this->rule();
+        $rule = static::rule();
 
         if ($except && is_array($except)) {
             $rule = array_diff_key($rule, array_flip($except));
@@ -101,13 +101,13 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
         }
     }
 
-    abstract function rule(): array;
+    abstract public function rule(): array;
 
-    abstract function toArray($arrayType, $include = ''): array;
+    abstract public function toArray($arrayType, $include = ''): array;
 
-    abstract function generateTransformer($arrayType, $include): array;
+    abstract public function generateTransformer($arrayType, $include): array;
 
-    abstract function getParent(): ?AbstractEntities;
+    abstract public function getParent(): ?AbstractEntities;
 
     /**
      * @return EntityManagerInterface
@@ -188,7 +188,8 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
         return array_diff_assoc($this->toArray('for_log'), $this->getOriginal() ? $this->getOriginal()->toArray('for_log') : []);
     }
 
-    private function saveLog($diff){
+    private function saveLog($diff)
+    {
         $changeLog = new EntityChangeLog();
         $changeLog->setUser(user());
         $changeLog->setRefTable($this->getTableName());

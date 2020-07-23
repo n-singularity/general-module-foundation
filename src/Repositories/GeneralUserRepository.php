@@ -57,16 +57,16 @@ class GeneralUserRepository extends AbstractRepository
     }
 
     /**
-     * @param array $criteria
+     * @param array $filter
      * @param string $toArray
      * @param $include
      * @param bool $interrupt
      * @return GeneralUser
      * @throws CustomMessagesException
      */
-    public function showByBasicCriteria(array $criteria = [], $toArray = "default", $include = '', $interrupt = true)
+    public function showByBasicFilter(array $filter = [], $toArray = "default", $include = '', $interrupt = true)
     {
-        return parent::showByBasicCriteriaContract($criteria, $toArray, $include, $interrupt);
+        return parent::showByBasicFilterContract($filter, $toArray, $include, $interrupt);
     }
 
     /**
