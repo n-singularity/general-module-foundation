@@ -32,11 +32,11 @@ class LocationFoundationServiceProvider extends ServiceProvider
         if (!$this->isLumen()) {
             $this->publishes([
                 //Entity
-                __DIR__ . '/_publishFiles/Entities/Locations/Country.txt'                 => app_path('Entities/Locations/Country.php'),
-                __DIR__ . '/_publishFiles/Entities/Locations/Province.txt'                => app_path('Entities/Locations/Province.php'),
-                __DIR__ . '/_publishFiles/Entities/Locations/City.txt'                    => app_path('Entities/Locations/City.php'),
-                __DIR__ . '/_publishFiles/Entities/Locations/District.txt'                => app_path('Entities/Locations/District.php'),
-                __DIR__ . '/_publishFiles/Entities/Locations/Village.txt'                 => app_path('Entities/Locations/Village.php'),
+                __DIR__ . '/_publishFiles/Entities/Locations/Country.txt'                 => app_path('Entities/Modules/Locations/Country.php'),
+                __DIR__ . '/_publishFiles/Entities/Locations/Province.txt'                => app_path('Entities/Modules/Locations/Province.php'),
+                __DIR__ . '/_publishFiles/Entities/Locations/City.txt'                    => app_path('Entities/Modules/Locations/City.php'),
+                __DIR__ . '/_publishFiles/Entities/Locations/District.txt'                => app_path('Entities/Modules/Locations/District.php'),
+                __DIR__ . '/_publishFiles/Entities/Locations/Village.txt'                 => app_path('Entities/Modules/Locations/Village.php'),
                 //Repository
                 __DIR__ . '/_publishFiles/Repositories/Locations/CountryRepository.txt'   => app_path('Repositories/Locations/CountryRepository.php'),
                 __DIR__ . '/_publishFiles/Repositories/Locations/ProvinceRepository.txt'  => app_path('Repositories/Locations/ProvinceRepository.php'),
