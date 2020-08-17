@@ -6,7 +6,7 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Illuminate\Support\Facades\Hash;
-use Nsingularity\AesHashing\AesHashing;
+use Nsingularity\GeneralModule\Foundation\Entities\Abstracts\AbstractEntities;
 use Nsingularity\GeneralModule\Foundation\Entities\Traits\TimeStampAttributes;
 
 abstract class GeneralUser extends AbstractEntities

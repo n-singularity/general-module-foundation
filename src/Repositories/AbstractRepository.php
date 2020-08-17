@@ -5,9 +5,7 @@ namespace Nsingularity\GeneralModule\Foundation\Repositories;
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
 use Nsingularity\GeneralModule\Foundation\Entities\AbstractEntities;
-use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
-use Nsingularity\GeneralModule\Foundation\Http\Responser\Api\AbstractResponse;
 use ReflectionException;
 
 abstract class AbstractRepository extends AbstractFunctionRepository
@@ -28,7 +26,7 @@ abstract class AbstractRepository extends AbstractFunctionRepository
         $this->errorText       = $errorText;
     }
 
-    abstract function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '');
+    abstract function get($filter = [], $sort = [], $search = '');
 
     abstract protected function basicFilterSearchSort(QueryBuilder &$qb, $filter = [], $sort = [], $search = '');
 
@@ -122,6 +120,7 @@ abstract class AbstractRepository extends AbstractFunctionRepository
      * @param string $include
      * @return mixed
      * @throws CustomMessagesException
+     * @throws ReflectionException
      */
     protected function updateEntity(AbstractEntities $entity, array $data, $toArray = "default", $include = "")
     {

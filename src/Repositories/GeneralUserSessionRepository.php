@@ -6,7 +6,7 @@ use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
 use Nsingularity\GeneralModule\Foundation\Entities\GeneralUserSession;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
-use Nsingularity\GeneralModule\Foundation\Http\Responser\Api\AbstractResponse;
+use Nsingularity\GeneralModule\Foundation\Http\Responser\Api\ResponseFactory;
 use ReflectionException;
 
 class GeneralUserSessionRepository extends AbstractRepository
@@ -33,13 +33,12 @@ class GeneralUserSessionRepository extends AbstractRepository
     }
 
     /**
-     * @param AbstractResponse $responseContract
      * @param array $filter
      * @param array $sort
      * @param string $search
-     * @return mixed'
+     * @return ResponseFactory
      */
-    public function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '')
+    public function get($filter = [], $sort = [], $search = '')
     {
         /** @var QueryBuilder $qb */
         $qb = $this->em()->createQueryBuilder();
@@ -49,7 +48,7 @@ class GeneralUserSessionRepository extends AbstractRepository
         $this->basicFilterSearchSort($qb, $filter, $sort, $search);
 
         //show
-        return $responseContract->render($qb);
+        return new ResponseFactory($qb);
     }
 
     /**

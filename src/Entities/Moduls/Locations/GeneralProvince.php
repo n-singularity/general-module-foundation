@@ -2,12 +2,11 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Entities\Locations;
 
-use App\Exceptions\CustomMessagesException;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Nsingularity\GeneralModule\Foundation\Entities\AbstractEntities;
+use Nsingularity\GeneralModule\Foundation\Entities\Abstracts\AbstractEntities;
 use Nsingularity\GeneralModule\Foundation\Entities\Traits\TimeStampAttributes;
 
 abstract class GeneralProvince extends AbstractEntities

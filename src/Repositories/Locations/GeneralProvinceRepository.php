@@ -8,6 +8,7 @@ use App\Http\Responser\AbstractResponse;
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
 use Nsingularity\GeneralModule\Foundation\Entities\Locations\GeneralProvince;
+use Nsingularity\GeneralModule\Foundation\Http\Responser\Api\ResponseFactory;
 use Nsingularity\GeneralModule\Foundation\Repositories\AbstractRepository;
 use ReflectionException;
 
@@ -39,14 +40,12 @@ class GeneralProvinceRepository extends AbstractRepository
     }
 
     /**
-     * @param AbstractResponse $responseContract
      * @param array $filter
      * @param array $sort
      * @param string $search
-     * @param array $addFunction
-     * @return array|Province[]
+     * @return ResponseFactory
      */
-    public function get(AbstractResponse $responseContract, $filter = [], $sort = [], $search = '')
+    public function get($filter = [], $sort = [], $search = '')
     {
         /** @var QueryBuilder $qb */
         $qb = $this->em()->createQueryBuilder();
@@ -56,7 +55,7 @@ class GeneralProvinceRepository extends AbstractRepository
         $this->basicFilterSearchSort($qb, $filter, $sort, $search);
 
         //show
-        return $responseContract->render($qb);
+        return new ResponseFactory($qb);
     }
 
     /**

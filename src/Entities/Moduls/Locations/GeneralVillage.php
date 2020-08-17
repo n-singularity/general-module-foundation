@@ -2,15 +2,13 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Entities\Locations;
 
-use App\Exceptions\CustomMessagesException;
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Nsingularity\GeneralModule\Foundation\Entities\AbstractEntities;
+use Nsingularity\GeneralModule\Foundation\Entities\Abstracts\AbstractEntities;
 use Nsingularity\GeneralModule\Foundation\Entities\Traits\TimeStampAttributes;
 
-abstract class GeneralDistrict extends AbstractEntities
+abstract class GeneralVillage extends AbstractEntities
 {
     use TimeStampAttributes;
 
@@ -22,23 +20,17 @@ abstract class GeneralDistrict extends AbstractEntities
     protected $id;
 
     /**
-     * @var City
-     * @ORM\manyToOne(targetEntity="City", inversedBy="districts", fetch="EAGER")
-     * @ORM\JoinColumn(name="city_id", onDelete="SET NULL", nullable=true)
+     * @var District
+     * @ORM\manyToOne(targetEntity="District", inversedBy="villages", fetch="EAGER")
+     * @ORM\JoinColumn(name="district_id", onDelete="SET NULL", nullable=true)
      */
-    protected $city;
+    protected $district;
 
     /**
      * @var string
      * @ORM\Column(type="string")
      */
     protected $name;
-
-    /**
-     * @var ArrayCollection|Village[]
-     * @ORM\OneToMany(targetEntity="Village", mappedBy="district")
-     */
-    protected $villages;
 
     /**
      * Role constructor.
@@ -54,19 +46,19 @@ abstract class GeneralDistrict extends AbstractEntities
     }
 
     /**
-     * @return City
+     * @return District
      */
-    public function getCity(): City
+    public function getDistrict(): District
     {
-        return $this->city;
+        return $this->district;
     }
 
     /**
-     * @param City $city
+     * @param District $district
      */
-    public function setCity(City $city): void
+    public function setDistrict(District $district): void
     {
-        $this->city = $city;
+        $this->district = $district;
     }
 
     /**
@@ -86,18 +78,18 @@ abstract class GeneralDistrict extends AbstractEntities
     }
 
     /**
-     * @return Village[]|ArrayCollection
+     * @return DateTime
      */
-    public function getVillages()
+    public function getCreatedAt()
     {
-        return $this->villages;
+        return $this->created_at;
     }
 
     /**
-     * @param Village[]|ArrayCollection $villages
+     * @return DateTime
      */
-    public function setVillages($villages): void
+    public function getUpdatedAt()
     {
-        $this->villages = $villages;
+        return $this->updated_at;
     }
 }

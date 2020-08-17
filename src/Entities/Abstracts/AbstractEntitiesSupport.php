@@ -1,6 +1,6 @@
 <?php
 
-namespace Nsingularity\GeneralModule\Foundation\Entities;
+namespace Nsingularity\GeneralModule\Foundation\Entities\Abstracts;
 
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;

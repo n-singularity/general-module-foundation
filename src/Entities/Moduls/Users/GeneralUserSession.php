@@ -2,11 +2,11 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Entities;
 
-use App\Repositories\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use DateTime;
 use Exception;
+use Nsingularity\GeneralModule\Foundation\Entities\Abstracts\AbstractEntities;
 use Nsingularity\GeneralModule\Foundation\Entities\Traits\TimeStampAttributes;
 
 abstract class GeneralUserSession extends AbstractEntities
