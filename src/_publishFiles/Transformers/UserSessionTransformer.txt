@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use App\Entities\UserSession;
+use App\Entities\Modules\Users\UserSession;
 use Nsingularity\GeneralModule\Foundation\Transformers\ParentTransformer;
 
 trait UserSessionTransformer

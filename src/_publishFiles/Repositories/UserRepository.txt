@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Repositories;
 
-use App\Entities\User;
+use App\Entities\Modules\Users\User;
 use Nsingularity\GeneralModule\Foundation\Repositories\GeneralUserRepository;
-
 
 class UserRepository extends GeneralUserRepository
 {

@@ -3,12 +3,12 @@
 namespace App\Services;
 
 
-use App\Entities\User;
-use App\Entities\UserSession;
+use App\Entities\Modules\Users\User;
+use App\Entities\Modules\Users\UserSession;
 use App\Repositories\UserRepository;
 use App\Repositories\UserSessionRepository;
 use Exception;
-use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
+use Nsingularity\GeneralModule\Foundation\Entities\Modules\Users\GeneralUser;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Services\MainServices\AbstractService;
 use ReflectionException;
@@ -42,7 +42,7 @@ class AuthService extends AbstractService
         $token = $this::generateTokenAuth($user, $agent, $rememberMe);
 
         return [
-            "token" => "Bearer " . $token,
+            "token" => $token,
         ];
     }
 
@@ -54,8 +54,7 @@ class AuthService extends AbstractService
     public function logout()
     {
         $userSession = customAuth()->getUserSession();
-        $userSession->setActive(false);
-        $userSession->save();
+        $userSession->remove();
 
         return [
             "token" => encrypt([rand(0, 100)]),
@@ -68,7 +67,6 @@ class AuthService extends AbstractService
     public function loadUserSession($session)
     {
         try {
-            $session = str_replace("Bearer ", "", $session);
             $data    = json_decode(decrypt($session), 1) ? json_decode(decrypt($session), 1) : [];
         } catch (Exception $exception) {
             return;
@@ -88,10 +86,9 @@ class AuthService extends AbstractService
         $userSessionRepository = new UserSessionRepository();
         /** @var UserSession $userSession */
         $userSession = $userSessionRepository->showByHashId($data['token_hashId'], [], false, '', false);
-        $user        = $userSession->getUser();
 
-        if ($user instanceof User) {
-            customAuth()->setUser($user);
+        if ($userSession instanceof UserSession && $userSession->getUser() instanceof User) {
+            customAuth()->setUser($userSession->getUser());
             customAuth()->setUserSession($userSession);
         }
     }

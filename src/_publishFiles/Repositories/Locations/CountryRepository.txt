@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Locations;
 
-use App\Entities\Locations\Country;
+use App\Entities\Modules\Locations\Country;
 use Nsingularity\GeneralModule\Foundation\Repositories\Locations\GeneralCountryRepository;
 
 

@@ -5,7 +5,7 @@ namespace App\Entities\Modules\Users;
 use App\Transformers\UserTransformer;
 use Doctrine\ORM\Mapping as ORM;
 use Nsingularity\GeneralModule\Foundation\Entities\Abstracts\AbstractEntities;
-use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
+use Nsingularity\GeneralModule\Foundation\Entities\Modules\Users\GeneralUser;
 
 /**
  * @ORM\Entity

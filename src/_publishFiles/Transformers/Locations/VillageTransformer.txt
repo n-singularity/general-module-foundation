@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Transformers\Locations;
-use App\Entities\Locations\Village;
+use App\Entities\Modules\Locations\Village;
 use Nsingularity\GeneralModule\Foundation\Transformers\ParentTransformer;
 
 trait VillageTransformer
