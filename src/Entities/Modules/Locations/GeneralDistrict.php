@@ -1,10 +1,11 @@
 <?php
 
-namespace Nsingularity\GeneralModule\Foundation\Entities\Locations;
+namespace Nsingularity\GeneralModule\Foundation\Entities\Modules\Locations;
 
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Nsingularity\GeneralModule\Foundation\Entities\Abstracts\AbstractEntities;
 use Nsingularity\GeneralModule\Foundation\Entities\Traits\TimeStampAttributes;
 

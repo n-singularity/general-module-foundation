@@ -7,6 +7,7 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Nsingularity\GeneralModule\Foundation\Entities\Abstracts\AbstractEntities;
+use Nsingularity\GeneralModule\Foundation\Entities\Modules\Users\GeneralUser;
 use Nsingularity\GeneralModule\Foundation\Entities\Traits\CreatedAtAttribute;
 use Nsingularity\GeneralModule\Foundation\Transformers\EntityChangeLogTransformer;
 
@@ -16,7 +17,7 @@ Abstract class GeneralEntityChangeLog extends AbstractEntities
 
     /**
      * @var User
-     * @ORM\manyToOne(targetEntity="User")
+     * @ORM\manyToOne(targetEntity="\App\Entities\Modules\Users\User")
      * @ORM\JoinColumn(name="user_id", onDelete="SET NULL", nullable=true)
      */
     protected $user;
@@ -122,7 +123,7 @@ Abstract class GeneralEntityChangeLog extends AbstractEntities
     /**
      * @param string $ref_id
      */
-    public function setRefId(string $ref_id): void
+    public function setRefId(?string $ref_id): void
     {
         $this->ref_id = $ref_id;
     }

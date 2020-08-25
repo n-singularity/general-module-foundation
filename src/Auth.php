@@ -2,8 +2,8 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Controller\Api;
 
-use App\Entities\UserSession;
-use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
+use App\Entities\Modules\Users\UserSession;
+use Nsingularity\GeneralModule\Foundation\Entities\Modules\Users\GeneralUser;
 
 class Auth
 {
@@ -16,7 +16,7 @@ class Auth
     /**
      * @return GeneralUser
      */
-    public function getUser(): GeneralUser
+    public function getUser(): ?GeneralUser
     {
         return $this->user;
     }

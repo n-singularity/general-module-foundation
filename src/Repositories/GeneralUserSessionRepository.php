@@ -4,7 +4,7 @@ namespace Nsingularity\GeneralModule\Foundation\Repositories;
 
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
-use Nsingularity\GeneralModule\Foundation\Entities\GeneralUserSession;
+use Nsingularity\GeneralModule\Foundation\Entities\Modules\Users\GeneralUserSession;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Http\Responser\Api\ResponseFactory;
 use ReflectionException;

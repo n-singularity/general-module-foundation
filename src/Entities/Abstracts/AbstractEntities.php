@@ -64,9 +64,9 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
      * @param array|null $only
      * @return array
      */
-    static public function getRule(array $only = null): array
+    public function getRule(array $only = null): array
     {
-        $rule = static::rule();
+        $rule = $this->rule();
 
         if ($only && is_array($only)) {
             $rule = array_intersect_key($rule, array_flip($only));
@@ -79,9 +79,9 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
      * @param array $except
      * @return array
      */
-    static public function getRuleExcept(array $except): array
+    public function getRuleExcept(array $except): array
     {
-        $rule = static::rule();
+        $rule = $this->rule();
 
         if ($except && is_array($except)) {
             $rule = array_diff_key($rule, array_flip($except));
@@ -94,7 +94,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
      * @param $entityClassName
      * @param int $digit
      */
-    protected function generateHashId($entityClassName, $digit = 8): string
+    protected function generateHashId($entityClassName, $digit = 8): void
     {
         if (!$this->hash_id) {
             $this->hash_id = createHashId($entityClassName, $digit);
@@ -125,7 +125,6 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
     public function save()
     {
         $data = $this->toArray("default");
-
         //remove XSS and disallowed html tag
         foreach ($data as $key => $value) {
             $data[$key] = coreHtmlTagAllow(antiXss($value));
@@ -170,10 +169,10 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
 
     public function remove()
     {
+        $this->saveLog($this->getOriginal()->toArray('for_log'));
+
         $this->em()->remove($this);
         $this->em()->flush();
-
-        $this->saveLog($this->getOriginal()->toArray('for_log'));
 
         return true;
     }

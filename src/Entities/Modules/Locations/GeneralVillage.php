@@ -1,6 +1,6 @@
 <?php
 
-namespace Nsingularity\GeneralModule\Foundation\Entities\Locations;
+namespace Nsingularity\GeneralModule\Foundation\Entities\Modules\Locations;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;

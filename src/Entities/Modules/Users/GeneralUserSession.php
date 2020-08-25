@@ -1,7 +1,8 @@
 <?php
 
-namespace Nsingularity\GeneralModule\Foundation\Entities;
+namespace Nsingularity\GeneralModule\Foundation\Entities\Modules\Users;
 
+use App\Repositories\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use DateTime;
@@ -51,7 +52,7 @@ abstract class GeneralUserSession extends AbstractEntities
         $this->generateHashId(get_class($this));
     }
 
-    public function rule(): array
+    function rule(): array
     {
         return [];
     }
