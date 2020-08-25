@@ -122,7 +122,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
      * @throws CustomMessagesException
      * @throws ReflectionException
      */
-    public function save()
+    public function save($logIt = true)
     {
         $data = $this->toArray("default");
         //remove XSS and disallowed html tag
@@ -135,7 +135,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
 
         customValidation($data, $rule);
 
-        $this->saveIgnoreRule();
+        $this->saveIgnoreRule($logIt);
 
         return $this;
     }
@@ -143,12 +143,14 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
     /**
      * @return $this
      */
-    public function saveIgnoreRule()
+    public function saveIgnoreRule($logIt = true)
     {
         $this->em()->persist($this);
         $this->em()->flush();
 
-        $this->saveLog($this->getDiffWithOriginal());
+        if ($logIt) {
+            $this->saveLog($this->getDiffWithOriginal());
+        }
 
         return $this;
     }
@@ -189,13 +191,15 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
 
     private function saveLog($diff)
     {
-        $changeLog = new EntityChangeLog();
-        $changeLog->setUser(user());
-        $changeLog->setRefTable($this->getTableName());
-        $changeLog->setRefId($this->getId());
-        $changeLog->setParent($this->getParent());
-        $changeLog->setDiff(json_encode($diff));
-        $this->em()->persist($changeLog);
-        $this->em()->flush();
+        if ($diff) {
+            $changeLog = new EntityChangeLog();
+            $changeLog->setUser(user());
+            $changeLog->setRefTable($this->getTableName());
+            $changeLog->setRefId($this->getId());
+            $changeLog->setParent($this->getParent());
+            $changeLog->setDiff(json_encode($diff));
+            $this->em()->persist($changeLog);
+            $this->em()->flush();
+        }
     }
 }
