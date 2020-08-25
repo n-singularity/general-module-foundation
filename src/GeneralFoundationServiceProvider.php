@@ -55,7 +55,7 @@ class GeneralFoundationServiceProvider extends ServiceProvider
                 //Exception
                 __DIR__ . '/_publishFiles/Exceptions/Handler.txt'                            => app_path('Exceptions/Handler.php'),
                 //route
-                __DIR__ . '/_publishFiles/routes/api/foundation.php'                         => base_path('routes/api/api.php'),
+                __DIR__ . '/_publishFiles/routes/api/foundation.php'                         => base_path('routes/api/n-singularity_api.php'),
                 //provider
                 __DIR__ . '/_publishFiles/Providers/RouteServiceProvider.txt'                => app_path('Providers/RouteServiceProvider.php'),
 
