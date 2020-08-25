@@ -71,6 +71,7 @@ class GeneralFoundationServiceProvider extends ServiceProvider
         $request = app(Request::class);
 
         $session = $request->header("Authorization");
+
         if ($session) {
             $session     = $request->header("Authorization");
             $authService = new AuthService();

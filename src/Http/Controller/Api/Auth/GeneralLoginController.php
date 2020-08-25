@@ -3,6 +3,7 @@
 namespace Nsingularity\GeneralModule\Foundation\Http\Controller\Api\Auth;
 
 use App\Services\AuthService;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
@@ -18,6 +19,7 @@ class GeneralLoginController extends GeneralController
      */
     public function login(LoginValidatedRequest $request)
     {
+
         $authService = new AuthService();
         $loginData   = $authService->login(
             $request->input("username"),
