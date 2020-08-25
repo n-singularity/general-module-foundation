@@ -6,6 +6,7 @@ use App\Entities\User;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Nsingularity\GeneralModule\Foundation\Entities\Abstracts\AbstractEntities;
 use Nsingularity\GeneralModule\Foundation\Entities\Traits\CreatedAtAttribute;
 use Nsingularity\GeneralModule\Foundation\Transformers\EntityChangeLogTransformer;
 
