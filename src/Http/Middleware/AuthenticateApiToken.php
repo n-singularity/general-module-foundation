@@ -26,7 +26,7 @@ class AuthenticateApiToken
             if ($response instanceof JsonResponse && is_null($response->headers->get("Authorization"))) {
                 $userSession =  customAuth()->getUserSession();
                 $userSession->generateExpiredAt();
-                $userSession->save();
+                $userSession->save(false);
 
                 $token = $userSession->generateToken();
                 $response->withHeaders(["Authorization" => $token]);
