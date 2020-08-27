@@ -2,6 +2,7 @@
 
 namespace Nsingularity\GeneralModule\Foundation\Repositories;
 
+use App\Entities\Modules\IncomingProducts\PurchaseInvoice;
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
 use Nsingularity\GeneralModule\Foundation\Entities\Abstracts\AbstractEntities;
@@ -36,6 +37,15 @@ abstract class AbstractRepository extends AbstractFunctionRepository
     public function getEntityModel()
     {
         return $this->entity;
+    }
+
+    /**
+     * @return AbstractEntities|string
+     */
+    public function newEntityModel()
+    {
+        $c      = get_class($this->getEntityModel());
+        return new $c();
     }
 
     public function filterAllowedInput(array $inputUser = [])
@@ -99,7 +109,10 @@ abstract class AbstractRepository extends AbstractFunctionRepository
      */
     public function store(array $data, $toArray = "default")
     {
-        $entity = clone $this->getEntityModel();
+        /** @var PurchaseInvoice $entity */
+        $entity = $this->newEntityModel();
+        $entity->setStatus($entity::STATUS_DRAFT);
+
         return $this->updateEntity($entity, $data, $toArray);
     }
 

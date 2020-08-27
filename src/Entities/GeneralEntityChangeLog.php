@@ -75,7 +75,7 @@ Abstract class GeneralEntityChangeLog extends AbstractEntities
         $this->generateHashId(get_class($this));
     }
 
-    public function rule(): array
+    static function rule(): array
     {
         return [];
     }

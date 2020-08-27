@@ -28,6 +28,11 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
      */
     protected $hash_id;
 
+    public function __construct()
+    {
+        $this->generateHashId(get_called_class());
+    }
+
     /** @ORM\PostLoad() */
     public function doOtherStuffOnPostLoad(): void
     {
@@ -64,9 +69,11 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
      * @param array|null $only
      * @return array
      */
-    public function getRule(array $only = null): array
+    static function getRule(array $only = null): array
     {
-        $rule = $this->rule();
+        /** @var AbstractEntities $c */
+        $c = get_called_class();
+        $rule = $c::rule();
 
         if ($only && is_array($only)) {
             $rule = array_intersect_key($rule, array_flip($only));
@@ -79,9 +86,11 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
      * @param array $except
      * @return array
      */
-    public function getRuleExcept(array $except): array
+    static function getRuleExcept(array $except): array
     {
-        $rule = $this->rule();
+        /** @var AbstractEntities $c */
+        $c = get_called_class();
+        $rule = $c::rule();
 
         if ($except && is_array($except)) {
             $rule = array_diff_key($rule, array_flip($except));
@@ -101,7 +110,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
         }
     }
 
-    abstract public function rule(): array;
+    abstract public static function rule(): array;
 
     abstract public function toArray($arrayType, $include = ''): array;
 
@@ -131,7 +140,7 @@ abstract class AbstractEntities extends AbstractEntitiesSupport
         }
 
         $this->setParameterFromArrayIgnoreError($data);
-        $rule = $this->getRule() ? $this->getRule() : [];
+        $rule = self::getRule() ? self::getRule() : [];
 
         customValidation($data, $rule);
 

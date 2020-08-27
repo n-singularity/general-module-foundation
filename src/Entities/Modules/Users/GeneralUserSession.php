@@ -52,7 +52,7 @@ abstract class GeneralUserSession extends AbstractEntities
         $this->generateHashId(get_class($this));
     }
 
-    function rule(): array
+    static function rule(): array
     {
         return [];
     }
@@ -143,7 +143,7 @@ abstract class GeneralUserSession extends AbstractEntities
      */
     public function generateExpiredAt()
     {
-        $this->expired_at = (new DateTime())->setTimestamp(time() + ($this->remember_me ? 3600 * 1000 : 600));
+        $this->expired_at = (new DateTime())->setTimestamp(time() + ($this->remember_me ? 3600 * 1000 : env('EXPIRED_TOKEN_AT', 3600)));
     }
 
     public function generateToken()
