@@ -7,7 +7,7 @@ use App\Exceptions\CustomMessagesException;
 use App\Http\Responser\AbstractResponse;
 use Doctrine\ORM\QueryBuilder;
 use Illuminate\Contracts\Translation\Translator;
-use Nsingularity\GeneralModule\Foundation\Entities\Locations\GeneralVillage;
+use Nsingularity\GeneralModule\Foundation\Entities\Modules\Locations\GeneralVillage;
 use Nsingularity\GeneralModule\Foundation\Http\Responser\Api\ResponseFactory;
 use Nsingularity\GeneralModule\Foundation\Repositories\AbstractRepository;
 use ReflectionException;

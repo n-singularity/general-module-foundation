@@ -11,9 +11,9 @@ use ReflectionException;
 
 abstract class AbstractRepository extends AbstractFunctionRepository
 {
-    private $entity          = "";
-    private $entityClassName = "";
-    private $errorText       = "";
+    private   $entity          = "";
+    private   $entityClassName = "";
+    private   $errorText       = "";
 
     /**
      * AbstractRepository constructor.
@@ -44,7 +44,7 @@ abstract class AbstractRepository extends AbstractFunctionRepository
      */
     public function newEntityModel()
     {
-        $c      = get_class($this->getEntityModel());
+        $c = get_class($this->getEntityModel());
         return new $c();
     }
 
@@ -73,7 +73,7 @@ abstract class AbstractRepository extends AbstractFunctionRepository
      * @param bool $toArray
      * @param string $include
      * @param bool $interrupt
-     * @return mixed
+     * @return array|AbstractEntities
      */
     public function showByHashId($hashId, $filter = [], $toArray = true, $include = "", $interrupt = true)
     {
@@ -109,10 +109,7 @@ abstract class AbstractRepository extends AbstractFunctionRepository
      */
     public function store(array $data, $toArray = "default")
     {
-        /** @var PurchaseInvoice $entity */
         $entity = $this->newEntityModel();
-        $entity->setStatus($entity::STATUS_DRAFT);
-
         return $this->updateEntity($entity, $data, $toArray);
     }
 
@@ -124,7 +121,6 @@ abstract class AbstractRepository extends AbstractFunctionRepository
      * @return mixed
      */
     abstract function showByBasicFilter(array $filter, $toArray, $include, $interrupt);
-
 
     /**
      * @param AbstractEntities $entity
