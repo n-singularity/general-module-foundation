@@ -1,4 +1,9 @@
 ## Installation
+Require this package  
+```bash
+composer require laravel-doctrine/orm doctrine/inflector:"^1.4|^2.0"
+```
+
 #### Use Composer to install the package:
         $ COMPOSER_MEMORY_LIMIT=-1 composer require n-singularity/general-module-foundation
 
