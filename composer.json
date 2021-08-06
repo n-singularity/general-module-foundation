@@ -16,7 +16,7 @@
         "gedmo/doctrine-extensions": "^3.0",
         "laravel-doctrine/extensions": "^1.2",
         "laravel-doctrine/migrations": "^2.1",
-        "laravel-doctrine/orm": "^1.6",
+        "laravel-doctrine/orm": "^1.7.9",
         "voku/anti-xss": "^4.1",
         "beberlei/doctrineextensions": "^1.2",
         "barryvdh/laravel-debugbar": "^3.2",
