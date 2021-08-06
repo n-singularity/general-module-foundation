@@ -9,11 +9,11 @@
         }
     ],
     "require": {
-        "php": "^7.1.0",
-        "doctrine/inflector": "1.4.0",
-        "guzzlehttp/guzzle": "^6.5",
+        "php": "^8.0.0",
+        "doctrine/inflector": "^2.0.0",
+        "guzzlehttp/guzzle": "^7.0",
         "intervention/image": "^2.5",
-        "gedmo/doctrine-extensions": "^2.4",
+        "gedmo/doctrine-extensions": "^3.0",
         "laravel-doctrine/extensions": "^1.2",
         "laravel-doctrine/migrations": "^2.1",
         "laravel-doctrine/orm": "^1.6",
