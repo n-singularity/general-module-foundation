@@ -1,6 +1,6 @@
 <?php
 
-namespace Nsingularity\GeneralModule\Foundation\Controller\Api;
+namespace Nsingularity\GeneralModule\Foundation\Http\Controller\Api;
 
 use App\Entities\Modules\Users\UserSession;
 use Nsingularity\GeneralModule\Foundation\Entities\Modules\Users\GeneralUser;
