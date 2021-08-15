@@ -10,7 +10,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Validator;
-use Nsingularity\GeneralModule\Foundation\Controller\Api\Auth;
+use Nsingularity\GeneralModule\Foundation\Http\Controller\Api\Auth;
 use Nsingularity\GeneralModule\Foundation\Entities\Abstracts\AbstractEntities;
 use Nsingularity\GeneralModule\Foundation\Entities\Modules\Users\GeneralUser;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;

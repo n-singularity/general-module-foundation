@@ -2,7 +2,7 @@
 
 use Doctrine\DBAL\ConnectionException;
 use Illuminate\Support\Str;
-use Nsingularity\GeneralModule\Foundation\Controller\Api\Auth;
+use Nsingularity\GeneralModule\Foundation\Http\Controller\Api\Auth;
 use Nsingularity\GeneralModule\Foundation\Entities\GeneralUser;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesException;
 use Nsingularity\GeneralModule\Foundation\Exceptions\CustomMessagesViewException;
