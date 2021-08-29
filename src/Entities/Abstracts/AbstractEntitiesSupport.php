@@ -44,7 +44,7 @@ abstract class AbstractEntitiesSupport
                 $reflectMethod = $reflex->getMethod($method);
 
                 if (isset($reflectMethod->getParameters()[0])) {
-                    if ($reflectMethod->getParameters()[0]->getType() == gettype($value)) {
+                    if ($reflectMethod->getParameters()[0]->getType()->getName() == gettype($value)) {
                         $this->$method($value);
                     }
                 }
